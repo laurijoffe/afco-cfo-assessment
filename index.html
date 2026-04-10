@@ -980,10 +980,10 @@
       <div id="m1-intro" class="module-intro-card">
         <div class="module-num">Module 1 of 3</div>
         <h1>Financial Scenarios</h1>
-        <p>You will be presented with three real-world financial scenarios. For each, read the context and exhibit carefully, select the best course of action, then provide a brief written response to a follow-up question.</p>
+        <p>You will be presented with four real-world financial scenarios. The first three include a multiple-choice decision followed by a written follow-up. The fourth is an open-ended P&amp;L analysis — no multiple choice, longer response expected.</p>
         <div class="module-stats">
-          <div class="stat-chip"><strong>~20</strong> minutes</div>
-          <div class="stat-chip"><strong>3</strong> scenarios</div>
+          <div class="stat-chip"><strong>~28</strong> minutes</div>
+          <div class="stat-chip"><strong>4</strong> scenarios</div>
         </div>
         <button class="btn btn-primary" id="begin-m1-btn">Begin Module 1</button>
       </div>
@@ -993,7 +993,7 @@
         <!-- Scenario 1 -->
         <div id="scenario-1" class="card hidden">
           <div class="scenario-header">
-            <div class="scenario-badge">Scenario 1 of 3</div>
+            <div class="scenario-badge">Scenario 1 of 4</div>
             <div class="scenario-title">Margin Erosion</div>
           </div>
           <div class="framing-text" oncontextmenu="return false">
@@ -1053,7 +1053,7 @@
         <!-- Scenario 2 -->
         <div id="scenario-2" class="card hidden">
           <div class="scenario-header">
-            <div class="scenario-badge">Scenario 2 of 3</div>
+            <div class="scenario-badge">Scenario 2 of 4</div>
             <div class="scenario-title">CapEx Decision</div>
           </div>
           <div class="framing-text" oncontextmenu="return false">
@@ -1104,7 +1104,7 @@
         <!-- Scenario 3 -->
         <div id="scenario-3" class="card hidden">
           <div class="scenario-header">
-            <div class="scenario-badge">Scenario 3 of 3</div>
+            <div class="scenario-badge">Scenario 3 of 4</div>
             <div class="scenario-title">Collections Crisis</div>
           </div>
           <div class="framing-text" oncontextmenu="return false">
@@ -1151,8 +1151,49 @@
             <div class="min-word-warning" id="s3-min-warning"></div>
           </div>
           <div class="scenario-nav">
-            <button class="btn btn-primary" id="s3-next-btn" disabled>Submit Module 1</button>
+            <button class="btn btn-primary" id="s3-next-btn" disabled>Next Scenario</button>
           </div>
+        <!-- Scenario 4 — P&L Review (Module 1) -->
+        <div id="m1s4-card" class="card hidden">
+          <div class="scenario-header">
+            <div class="scenario-badge">Scenario 4 of 4</div>
+            <div class="scenario-title">P&amp;L Review</div>
+          </div>
+          <div class="framing-text" oncontextmenu="return false">
+            You've just joined AFCO as CFO. The outgoing CFO has handed you the last three years of financials and said "you'll want to look at this carefully." You have 10 minutes before your first meeting with the CEO.
+          </div>
+          <div class="exhibit" oncontextmenu="return false">
+            <div class="exhibit-header">AFCO INDUSTRIES — INCOME STATEMENT SUMMARY ($000s)</div>
+            <table>
+              <thead>
+                <tr><th></th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Revenue</td><td>$48,200</td><td>$54,100</td><td>$57,300</td></tr>
+                <tr><td>Cost of Goods Sold</td><td>$33,740</td><td>$39,493</td><td>$43,548</td></tr>
+                <tr><td>Gross Profit</td><td>$14,460</td><td>$14,607</td><td>$13,752</td></tr>
+                <tr><td>Gross Margin %</td><td>30.0%</td><td>27.0%</td><td>24.0%</td></tr>
+                <tr><td>SG&amp;A</td><td>$5,784</td><td>$7,031</td><td>$8,021</td></tr>
+                <tr><td>SG&amp;A % of Revenue</td><td>12.0%</td><td>13.0%</td><td>14.0%</td></tr>
+                <tr><td>EBITDA</td><td>$8,676</td><td>$7,576</td><td>$5,731</td></tr>
+                <tr><td>EBITDA Margin %</td><td>18.0%</td><td>14.0%</td><td>10.0%</td></tr>
+                <tr><td>Interest Expense</td><td>$980</td><td>$1,420</td><td>$2,290</td></tr>
+                <tr><td>Net Income</td><td>$5,240</td><td>$3,842</td><td>$1,647</td></tr>
+              </tbody>
+            </table>
+            <div class="exhibit-note">Inventory turns: 8.2x (FY2022) → 6.1x (FY2023) → 4.4x (FY2024)</div>
+          </div>
+          <div class="question-stem" oncontextmenu="return false">You have 10 minutes before your first meeting with the CEO. What do you see in this data and what are your three most important questions for him?</div>
+          <div class="textarea-wrap">
+            <textarea class="form-textarea" id="m1s4-textarea" placeholder="Your response..." style="min-height:140px;"></textarea>
+          </div>
+          <div class="word-counter" id="m1s4-counter">0 / 300 words</div>
+          <div class="min-word-warning" id="m1s4-min-warning"></div>
+          <div class="scenario-nav">
+            <button class="btn btn-primary" id="m1s4-next-btn" disabled>Submit Module 1</button>
+          </div>
+        </div>
+
         </div>
       </div>
     </div>
@@ -1223,10 +1264,10 @@
       <div id="m3-intro" class="module-intro-card">
         <div class="module-num">Module 3 of 3</div>
         <h1>Personality Calibration</h1>
-        <p>You will see 25 pairs of statements. For each pair, select the statement that more accurately describes you — not how you think a CFO should act, but how you actually tend to behave. There are no right or wrong answers. All 25 pairs must be answered to submit.</p>
+        <p>You will see 50 pairs of statements. For each pair, select the statement that more accurately describes you — not how you think a CFO should act, but how you actually tend to behave. There are no right or wrong answers. All 50 pairs must be answered to submit.</p>
         <div class="module-stats">
-          <div class="stat-chip"><strong>~10</strong> minutes</div>
-          <div class="stat-chip"><strong>25</strong> pairs</div>
+          <div class="stat-chip"><strong>~15</strong> minutes</div>
+          <div class="stat-chip"><strong>50</strong> pairs</div>
         </div>
         <button class="btn btn-primary" id="begin-m3-btn">Begin Module 3</button>
       </div>
@@ -1269,7 +1310,7 @@
 <div id="m3-footer" class="hidden">
   <div class="m3-footer-inner">
     <div class="m3-progress-text">
-      <strong id="m3-answered-count">0</strong> of 25 answered
+      <strong id="m3-answered-count">0</strong> of 50 answered
       <span id="m3-hint"> — scroll to answer all pairs</span>
     </div>
     <button class="btn btn-primary" id="m3-submit-btn" disabled>Submit Assessment</button>
@@ -1353,7 +1394,38 @@ const PAIRS = [
   ["I'm motivated primarily by financial outcomes", "I'm motivated primarily by building something that lasts"],
   ["I've left money on the table to take a role with more upside", "I've always optimized for current compensation"],
   ["I think about the long game more than the quarterly result", "I'm wired to focus on what's in front of me"],
-  ["I'd describe myself primarily as a builder", "I'd describe myself primarily as an operator"]
+  ["I'd describe myself primarily as a builder", "I'd describe myself primarily as an operator"],
+
+  // Cluster F — Resilience & Failure Response (26–33)
+  ["When I see a problem forming, I surface it before I have the full answer", "When I see a problem forming, I wait until I can bring a solution alongside it"],
+  ["When my team misses, I take the hit in the room and work out accountability privately", "When my team misses, I'm transparent about who made which call — leadership deserves accuracy"],
+  ["I've been publicly wrong about something significant and it didn't change how I operate", "I've been publicly wrong about something significant and it made me more careful about what I commit to"],
+  ["Under real pressure I get faster and sharper", "Under real pressure I slow down and get more deliberate"],
+  ["I'd rather surface a bad number early than let it get worse while I figure out the story", "I'd rather arrive with a problem and a plan attached — walking in empty-handed makes it worse"],
+  ["My most formative professional lessons came from failures, not successes", "I've learned more from studying what good operators do than from analyzing my own failures"],
+  ["I've told an owner 'I got this wrong' — plainly, without hedging or context padding", "When I've made a mistake, I make sure the context that contributed to it is on the table too"],
+  ["After a setback, I'm usually back to full effectiveness within days", "After a setback, I take real time to process before I move on — I don't rush it"],
+
+  // Cluster G — Collaboration vs. Independence (34–41)
+  ["When I have enough information, I make the call and inform people after — I don't wait for consensus", "I don't consider a decision made until the people who have to execute it are genuinely on board"],
+  ["I have a clear sense of which outcomes I was personally responsible for", "I find it hard to separate my contributions from the team's — we succeed or fail together"],
+  ["When I disagree with a group decision, I say so, push hard, then execute fully if I lose", "When I disagree with a group decision, I work within the process — raising it repeatedly damages the team"],
+  ["Most of my best decisions were made quickly, with limited outside input", "My best decisions have almost always been tested against someone I trust before I acted"],
+  ["I view peer relationships at work as important but secondary to getting the right outcome", "I invest heavily in peer relationships — results without trust don't last"],
+  ["When there's open conflict on a leadership team, I'm usually the one who names it directly", "When there's open conflict on a leadership team, I work to resolve it off to the side first"],
+  ["I'm most effective when I own a problem end-to-end, even if it means going alone for stretches", "I'm most effective when I'm working hard problems alongside people I respect"],
+  ["I give leadership the conclusion first — I'll share my reasoning if they ask", "I walk leadership through my reasoning — I want them to see how I got there, not just where I landed"],
+
+  // Cluster H — Integrity & Transparency (42–50)
+  ["When I know something will upset ownership, I tell them as soon as I know — even before I can fix it", "When I know something will upset ownership, I wait until I understand the scope so I'm not raising noise"],
+  ["I present data in the format that makes it hardest to misread, even if the number doesn't look good", "I frame data so leadership can read it in context — a number without framing can do more harm than good"],
+  ["I've given advice the CEO didn't want to hear, multiple times, and I haven't second-guessed it", "I've learned when to push hard and when to hold — not every disagreement is worth the relationship cost"],
+  ["When someone on my team misses a standard, I address it directly, often in writing", "When someone on my team misses a standard, I handle it face-to-face — putting it in writing feels adversarial"],
+  ["I've shared information with ownership that reflected badly on me personally — because they needed to know", "I'm thoughtful about how I manage up — I advocate for my team's reputation as much as the raw facts"],
+  ["I don't change how I present metrics based on who's in the room", "How I present metrics depends on the audience — the goal is the decision-maker getting what they actually need"],
+  ["I have little patience for organizational politics — they usually get in the way of the work", "I've accepted that politics are real — navigating them well is part of doing the job at a senior level"],
+  ["I have uncomfortable conversations as early as possible — delay almost always makes them worse", "I pick the moment for a hard conversation carefully — timing and setting matter as much as the content"],
+  ["If I believed ownership was being misled by the CEO, I would go to them directly", "If I had concerns about what the CEO was telling ownership, I would first try to resolve it with the CEO"]
 ];
 
 const MIN_WORDS = 20;
@@ -1377,10 +1449,11 @@ const state = {
       { mcChoice: null, followUpText: '' },
       { mcChoice: null, followUpText: '' },
       { mcChoice: null, followUpText: '' }
-    ]
+    ],
+    plResponse: ''
   },
   module2: { responses: ['', ''] },
-  module3: { answers: Array(25).fill(null) }
+  module3: { answers: Array(50).fill(null) }
 };
 
 /* =====================================================
@@ -1426,6 +1499,8 @@ function saveCurrentTextFields() {
     const ta = document.getElementById(id + '-textarea');
     if (ta) state.module1.scenarios[i].followUpText = ta.value;
   });
+  const plTa = document.getElementById('m1s4-textarea');
+  if (plTa) state.module1.plResponse = plTa.value;
   ['s4','s5'].forEach((id, i) => {
     const ta = document.getElementById(id + '-textarea');
     if (ta) state.module2.responses[i] = ta.value;
@@ -1475,16 +1550,18 @@ function truncateToWords(text, maxWords) {
   return words.slice(0, maxWords).join(' ');
 }
 
-function setupWordCounter(textareaId, counterId, onChangeCallback) {
+function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
+  maxWords = maxWords || 150;
   const ta = document.getElementById(textareaId);
   const counter = document.getElementById(counterId);
   if (!ta || !counter) return;
   ta.addEventListener('input', () => {
-    const truncated = truncateToWords(ta.value, 150);
-    if (ta.value !== truncated && countWords(ta.value) > 150) ta.value = truncated;
+    const truncated = truncateToWords(ta.value, maxWords);
+    if (ta.value !== truncated && countWords(ta.value) > maxWords) ta.value = truncated;
     const wc = countWords(ta.value);
-    counter.textContent = wc + ' / 150 words';
-    counter.className = 'word-counter' + (wc >= 150 ? ' red' : wc >= 128 ? ' amber' : '');
+    counter.textContent = wc + ' / ' + maxWords + ' words';
+    const amberAt = Math.floor(maxWords * 0.85);
+    counter.className = 'word-counter' + (wc >= maxWords ? ' red' : wc >= amberAt ? ' amber' : '');
     if (onChangeCallback) onChangeCallback(wc);
   });
 }
@@ -1574,21 +1651,30 @@ document.getElementById('begin-m3-btn').addEventListener('click', () => {
 function showScenario(n) {
   state.module1.currentScenario = n;
   for (let i = 1; i <= 3; i++) document.getElementById('scenario-' + i).classList.add('hidden');
-  document.getElementById('scenario-' + n).classList.remove('hidden');
+  document.getElementById('m1s4-card').classList.add('hidden');
+  if (n === 4) {
+    document.getElementById('m1s4-card').classList.remove('hidden');
+    setupWordCounter('m1s4-textarea', 'm1s4-counter', (wc) => updateM1NextBtn(4, wc), 300);
+  } else {
+    document.getElementById('scenario-' + n).classList.remove('hidden');
+    setupWordCounter('s' + n + '-textarea', 's' + n + '-counter', (wc) => updateM1NextBtn(n, wc));
+  }
   window.scrollTo(0, 0);
-  setupWordCounter('s' + n + '-textarea', 's' + n + '-counter', (wc) => {
-    updateM1NextBtn(n, wc);
-  });
 }
 
 function updateM1NextBtn(scenarioNum, wc) {
-  const nextBtn = document.getElementById('s' + scenarioNum + '-next-btn');
-  const warning = document.getElementById('s' + scenarioNum + '-min-warning');
-  const sData = state.module1.scenarios[scenarioNum - 1];
-  if (!sData.mcChoice) { nextBtn.disabled = true; return; }
-  if (wc < MIN_WORDS) {
+  const btnId = scenarioNum === 4 ? 'm1s4-next-btn' : 's' + scenarioNum + '-next-btn';
+  const warnId = scenarioNum === 4 ? 'm1s4-min-warning' : 's' + scenarioNum + '-min-warning';
+  const nextBtn = document.getElementById(btnId);
+  const warning = document.getElementById(warnId);
+  const minW = scenarioNum === 4 ? 50 : MIN_WORDS;
+  if (scenarioNum !== 4) {
+    const sData = state.module1.scenarios[scenarioNum - 1];
+    if (!sData.mcChoice) { nextBtn.disabled = true; return; }
+  }
+  if (wc < minW) {
     nextBtn.disabled = true;
-    if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.';
+    if (warning) warning.textContent = 'Minimum ' + minW + ' words required.';
   } else {
     nextBtn.disabled = false;
     if (warning) warning.textContent = '';
@@ -1640,6 +1726,13 @@ document.getElementById('s3-next-btn').addEventListener('click', () => {
   const ta = document.getElementById('s3-textarea');
   if (countWords(ta.value) < MIN_WORDS) return;
   state.module1.scenarios[2].followUpText = ta.value;
+  showScenario(4);
+});
+
+document.getElementById('m1s4-next-btn').addEventListener('click', () => {
+  const ta = document.getElementById('m1s4-textarea');
+  if (countWords(ta.value) < 50) return;
+  state.module1.plResponse = ta.value;
   showModuleIntro(2);
 });
 
@@ -1741,8 +1834,8 @@ function updateM3Progress() {
   const answered = state.module3.answers.filter(a => a !== null).length;
   document.getElementById('m3-answered-count').textContent = answered;
   const btn = document.getElementById('m3-submit-btn');
-  btn.disabled = answered < 25;
-  document.getElementById('m3-hint').style.display = answered >= 25 ? 'none' : '';
+  btn.disabled = answered < 50;
+  document.getElementById('m3-hint').style.display = answered >= 50 ? 'none' : '';
 }
 
 document.getElementById('m3-submit-btn').addEventListener('click', () => {
@@ -1758,11 +1851,14 @@ document.getElementById('m3-submit-btn').addEventListener('click', () => {
 function getClusterScores() {
   const ans = state.module3.answers;
   return {
-    riskCount:       [0,1,2,3,4].filter(i => ans[i] === 'A').length,
-    deferenceCount:  [5,6,7,8,9].filter(i => ans[i] === 'B').length,
-    diligenceCount:  [10,11,12,13,14].filter(i => ans[i] === 'A').length,
-    directnessCount: [15,16,17,18,19].filter(i => ans[i] === 'A').length,
-    commercialCount: [20,21,22,23,24].filter(i => ans[i] === 'A').length
+    riskCount:         [0,1,2,3,4].filter(i => ans[i] === 'A').length,
+    deferenceCount:    [5,6,7,8,9].filter(i => ans[i] === 'B').length,
+    diligenceCount:    [10,11,12,13,14].filter(i => ans[i] === 'A').length,
+    directnessCount:   [15,16,17,18,19].filter(i => ans[i] === 'A').length,
+    commercialCount:   [20,21,22,23,24].filter(i => ans[i] === 'A').length,
+    resilienceCount:   [25,26,27,28,29,30,31,32].filter(i => ans[i] === 'A').length,
+    independenceCount: [33,34,35,36,37,38,39,40].filter(i => ans[i] === 'A').length,
+    integrityCount:    [41,42,43,44,45,46,47,48,49].filter(i => ans[i] === 'A').length
   };
 }
 
@@ -1808,6 +1904,10 @@ function buildPlainTextReport() {
     lines.push('');
   });
 
+  lines.push('Scenario 4 (P&L Analysis):');
+  lines.push(state.module1.plResponse || '(Not completed)');
+  lines.push('');
+
   lines.push(SEP);
   lines.push('MODULE 2 -- STRATEGIC RESPONSES');
   lines.push(SEP);
@@ -1821,13 +1921,19 @@ function buildPlainTextReport() {
   lines.push(SEP);
   lines.push('MODULE 3 -- PERSONALITY CALIBRATION');
   lines.push(SEP);
-  lines.push(`Commitment & Risk (1-5):      ${cls.riskCount}/5 A`);
-  lines.push(`Authority Relationship (6-10): ${cls.deferenceCount}/5 B (deference)`);
-  lines.push(`Diligence & Detail (11-15):   ${cls.diligenceCount}/5 A`);
-  lines.push(`Communication Style (16-20):  ${cls.directnessCount}/5 A`);
-  lines.push(`Ambition & Values (21-25):    ${cls.commercialCount}/5 A`);
+  lines.push('--- Original Clusters (1-25) ---');
+  lines.push(`Commitment & Risk (1-5):        ${cls.riskCount}/5 A`);
+  lines.push(`Authority Relationship (6-10):  ${cls.deferenceCount}/5 B (deference)`);
+  lines.push(`Diligence & Detail (11-15):     ${cls.diligenceCount}/5 A`);
+  lines.push(`Communication Style (16-20):    ${cls.directnessCount}/5 A`);
+  lines.push(`Ambition & Values (21-25):      ${cls.commercialCount}/5 A`);
   lines.push('');
-  lines.push('Raw answers: ' + ans.map((a,i) => `${i+1}:${a||'?'}`).join(' '));
+  lines.push('--- New Clusters (26-50) ---');
+  lines.push(`Resilience & Failure (26-33):   ${cls.resilienceCount}/8 A`);
+  lines.push(`Collaboration vs. Indep (34-41):${cls.independenceCount}/8 A (independent)`);
+  lines.push(`Integrity & Transparency (42-50):${cls.integrityCount}/9 A`);
+  lines.push('');
+  lines.push('Raw answers (1-50): ' + ans.map((a,i) => `${i+1}:${a||'?'}`).join(' '));
   lines.push('');
   lines.push(SEP);
 
@@ -1856,6 +1962,7 @@ function runSubmissionFlow() {
       candidate: state.candidateName + (state.candidateSlug ? ' (' + state.candidateSlug + ')' : ''),
       submitted_at: submittedAt,
       completion_time: elapsedMins + ' minutes',
+      's4_pl_analysis': state.module1.plResponse || '(Not completed)',
       report: reportText
     })
   }).catch(() => {});
