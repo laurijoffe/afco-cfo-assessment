@@ -1976,7 +1976,7 @@ function runSubmissionFlow() {
 /* =====================================================
    INIT
 ===================================================== */
-(function init() {
+document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('admin') === 'true') {
     showScreen('admin');
@@ -1984,7 +1984,7 @@ function runSubmissionFlow() {
     return;
   }
   showScreen('entry');
-})();
+});
 
 function initAdminPage() {
   const baseUrl = window.location.href.split('?')[0];
