@@ -1574,8 +1574,8 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   window.scrollTo(0, 0);
+  setTimeout(() => window.scrollTo(0, 0), 50);
 }
-
 function setModuleIndicator(text) {
   document.getElementById('module-indicator').textContent = text;
 }
