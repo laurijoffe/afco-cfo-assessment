@@ -1577,15 +1577,7 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
 /* =====================================================
    NAVIGATION
 ===================================================== */
-function scrollToTop() {
-  const main = document.getElementById('main');
-  if (!main) return;
-  main.scrollTop = 0;
-  requestAnimationFrame(() => {
-    main.scrollTop = 0;
-    requestAnimationFrame(() => { main.scrollTop = 0; });
-  });
-}
+
 function scrollToTop() {
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
@@ -1763,37 +1755,31 @@ document.getElementById('m1s4-next-btn').addEventListener('click', () => {
    MODULE 2 — LOGIC
 ===================================================== */
 function showM2Scenario(n) {
-  for (let i = 4; i <= 5; i++) document.getElementById('scenario-' + i).classList.add('hidden');
+  for (let i = 4; i <= 5; i++) {
+    document.getElementById('scenario-' + i).classList.add('hidden');
+  }
   document.getElementById('scenario-' + n).classList.remove('hidden');
   scrollToTop();
 
   const id = 's' + n;
   const nextBtn = document.getElementById(id + '-next-btn');
   const warning = document.getElementById(id + '-min-warning');
+
+  const refresh = (wc) => {
+    if (wc < MIN_WORDS) {
+      nextBtn.disabled = true;
+      if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.';
+    } else {
+      nextBtn.disabled = false;
+      if (warning) warning.textContent = '';
+    }
+  };
+
   nextBtn.disabled = true;
+  setupWordCounter(id + '-textarea', id + '-counter', refresh);
 
-  setupWordCounter(id + '-textarea', id + '-counter', (wc) => {
-    if (wc < MIN_WORDS) {
-      nextBtn.disabled = true;
-      if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.';
-    } else {
-      nextBtn.disabled = false;
-      if (warning) warning.textContent = '';
-    }
-  });
-
-  // Also fire on direct input (in case setupWordCounter already attached)
   const ta = document.getElementById(id + '-textarea');
-  ta.addEventListener('input', () => {
-    const wc = countWords(ta.value);
-    if (wc < MIN_WORDS) {
-      nextBtn.disabled = true;
-      if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.';
-    } else {
-      nextBtn.disabled = false;
-      if (warning) warning.textContent = '';
-    }
-  });
+  refresh(countWords(ta.value));
 }
 
 document.getElementById('s4-next-btn').addEventListener('click', () => {
