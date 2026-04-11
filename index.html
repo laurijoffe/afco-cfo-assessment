@@ -123,6 +123,11 @@
     transition: padding-top 0.2s;
   }
 
+  html, body {
+    scroll-behavior: auto;
+    height: auto;
+  }
+
   #main.has-header { padding-top: 60px; }
 
   .screen { display: none; }
@@ -1585,10 +1590,7 @@ function scrollToTop() {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
-  scrollToTop();
-}
-function setModuleIndicator(text) {
-  document.getElementById('module-indicator').textContent = text;
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 /* =====================================================
