@@ -26,6 +26,7 @@
     --radius: 8px;
   }
 
+  html { overflow-anchor: none; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -1573,7 +1574,14 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
 function scrollToTop() {
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
-  setTimeout(() => { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }, 80);
+  requestAnimationFrame(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    requestAnimationFrame(() => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+  });
 }
 
 function showScreen(id) {
