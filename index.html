@@ -1573,8 +1573,9 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
-  window.scrollTo(0, 0);
-  setTimeout(() => window.scrollTo(0, 0), 50);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  setTimeout(() => { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }, 100);
 }
 function setModuleIndicator(text) {
   document.getElementById('module-indicator').textContent = text;
