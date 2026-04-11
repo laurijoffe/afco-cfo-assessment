@@ -118,7 +118,9 @@
      MAIN CONTENT
   ===================================================== */
   #main {
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-anchor: none;
     transition: padding-top 0.2s;
   }
 
@@ -925,7 +927,7 @@
     .report-header { background: var(--navy) !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     .report-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
     .score-bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-    #main { padding-top: 0 !important; }
+    #main { padding-top: 0 !important; height: auto !important; overflow-y: visible !important; }
   }
 
   /* Min-word warning */
@@ -1572,15 +1574,12 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
    NAVIGATION
 ===================================================== */
 function scrollToTop() {
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+  const main = document.getElementById('main');
+  if (!main) return;
+  main.scrollTop = 0;
   requestAnimationFrame(() => {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    requestAnimationFrame(() => {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    });
+    main.scrollTop = 0;
+    requestAnimationFrame(() => { main.scrollTop = 0; });
   });
 }
 
