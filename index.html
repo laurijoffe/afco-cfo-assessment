@@ -1570,12 +1570,16 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
 /* =====================================================
    NAVIGATION
 ===================================================== */
+function scrollToTop() {
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  setTimeout(() => { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }, 80);
+}
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
-  setTimeout(() => { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }, 100);
+  scrollToTop();
 }
 function setModuleIndicator(text) {
   document.getElementById('module-indicator').textContent = text;
@@ -1624,7 +1628,7 @@ function showModuleIntro(moduleNum) {
     document.getElementById('m3-pairs-container').classList.add('hidden');
     document.getElementById('m3-footer').classList.add('hidden');
   }
-  window.scrollTo(0, 0);
+  scrollToTop();
 }
 
 document.getElementById('begin-m1-btn').addEventListener('click', () => {
@@ -1644,7 +1648,7 @@ document.getElementById('begin-m3-btn').addEventListener('click', () => {
   buildPairs();
   document.getElementById('m3-pairs-container').classList.remove('hidden');
   document.getElementById('m3-footer').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  scrollToTop();
 });
 
 /* =====================================================
@@ -1661,7 +1665,7 @@ function showScenario(n) {
     document.getElementById('scenario-' + n).classList.remove('hidden');
     setupWordCounter('s' + n + '-textarea', 's' + n + '-counter', (wc) => updateM1NextBtn(n, wc));
   }
-  window.scrollTo(0, 0);
+  scrollToTop();
 }
 
 function updateM1NextBtn(scenarioNum, wc) {
@@ -1744,7 +1748,7 @@ document.getElementById('m1s4-next-btn').addEventListener('click', () => {
 function showM2Scenario(n) {
   for (let i = 4; i <= 5; i++) document.getElementById('scenario-' + i).classList.add('hidden');
   document.getElementById('scenario-' + n).classList.remove('hidden');
-  window.scrollTo(0, 0);
+  scrollToTop();
 
   const id = 's' + n;
   const nextBtn = document.getElementById(id + '-next-btn');
