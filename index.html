@@ -130,8 +130,8 @@
 
   #main.has-header { padding-top: 60px; }
 
-  .screen { display: none; position: absolute; width: 100%; }
-.screen.active { display: block; position: relative; }
+  .screen { display: none; width: 100%; }
+.screen.active { display: block; }
 
 .content-wrap {
     max-width: 760px;
@@ -1586,11 +1586,20 @@ function scrollToTop() {
     requestAnimationFrame(() => { main.scrollTop = 0; });
   });
 }
-
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  });
+}
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  scrollToTop();
 }
 
 /* =====================================================
