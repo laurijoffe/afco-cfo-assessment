@@ -1579,6 +1579,7 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
 ===================================================== */
 
 function scrollToTop() {
+  document.activeElement?.blur();
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
