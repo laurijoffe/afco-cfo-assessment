@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AFCO Industries — CFO Candidate Assessment</title>
 <style>
-  /* =====================================================
-     CSS VARIABLES & RESET
-  ===================================================== */
   :root {
     --navy: #1a2744;
     --navy-light: #2a3a6a;
@@ -26,7 +23,6 @@
     --radius: 8px;
   }
 
-  html { overflow-anchor: none; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -37,9 +33,6 @@
     line-height: 1.6;
   }
 
-  /* =====================================================
-     FIXED HEADER
-  ===================================================== */
   #app-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -60,894 +53,247 @@
     margin: 0 auto;
   }
 
-  .header-brand {
-    color: var(--white);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    opacity: 0.9;
-  }
+  .header-brand { color: var(--white); font-size: 14px; font-weight: 600; letter-spacing: 0.02em; opacity: 0.9; }
 
-  .header-meta {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+  .header-meta { display: flex; align-items: center; gap: 20px; }
 
-  #module-indicator {
-    color: var(--slate-light);
-    font-size: 13px;
-    font-weight: 500;
-  }
+  #module-indicator { color: var(--slate-light); font-size: 13px; font-weight: 500; }
 
   #timer-display {
-    font-size: 20px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: #4ade80;
-    letter-spacing: 0.05em;
-    transition: color 0.5s;
-    min-width: 64px;
-    text-align: right;
+    font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums;
+    color: #4ade80; letter-spacing: 0.05em; transition: color 0.5s; min-width: 64px; text-align: right;
   }
 
   #timer-display.amber { color: #fbbf24; }
   #timer-display.red { color: #f87171; animation: pulse 1s ease-in-out infinite; }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-  #progress-bar {
-    height: 4px;
-    background: rgba(255,255,255,0.15);
-  }
+  #progress-bar { height: 4px; background: rgba(255,255,255,0.15); }
 
   #progress-fill {
-    height: 100%;
-    width: 100%;
-    background: #4ade80;
+    height: 100%; width: 100%; background: #4ade80;
     transition: width 1s linear, background-color 0.5s;
   }
 
   #progress-fill.amber { background: #fbbf24; }
   #progress-fill.red { background: #f87171; }
 
-  /* =====================================================
-     MAIN CONTENT
-  ===================================================== */
-#main {
-    min-height: 100vh;
-    overflow-anchor: none;
-    transition: padding-top 0.2s;
-  }
-
-  html, body {
-    scroll-behavior: auto;
-    height: auto;
-  }
-
+  #main { min-height: 100vh; transition: padding-top 0.2s; }
   #main.has-header { padding-top: 60px; }
 
-  .screen { display: none; width: 100%; }
-.screen.active { display: block; }
+  .screen { display: none; }
+  .screen.active { display: block; }
 
-.content-wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 8px 20px 60px;
-  }
+  .content-wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
 
-  /* =====================================================
-     CARDS & TYPOGRAPHY
-  ===================================================== */
   .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--slate-border);
-    padding: 32px;
-    margin-bottom: 20px;
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); border: 1px solid var(--slate-border);
+    padding: 32px; margin-bottom: 20px;
   }
 
   h1 { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
 
   .label-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: var(--navy);
-    color: var(--white);
-    padding: 3px 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; background: var(--navy); color: var(--white);
+    padding: 3px 10px; border-radius: 4px; margin-bottom: 10px;
   }
-
-  .label-tag.green { background: var(--green); }
   .label-tag.slate { background: var(--slate); }
 
   p { margin-bottom: 12px; color: var(--text-light); }
   p:last-child { margin-bottom: 0; }
 
-  /* =====================================================
-     ENTRY SCREEN
-  ===================================================== */
-  #screen-entry {
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-
+  #screen-entry { min-height: 100vh; align-items: center; justify-content: center; padding: 24px; }
   #screen-entry.active { display: flex; }
 
-  #screen-thankyou {
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-
+  #screen-thankyou { min-height: 100vh; align-items: center; justify-content: center; padding: 24px; }
   #screen-thankyou.active { display: flex; }
 
   .entry-card {
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    border: 1px solid var(--slate-border);
-    padding: 48px 40px;
-    width: 100%;
-    max-width: 520px;
-    text-align: center;
+    background: var(--white); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border: 1px solid var(--slate-border); padding: 48px 40px;
+    width: 100%; max-width: 520px; text-align: center;
   }
 
-  .entry-company {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 12px;
-  }
-
-  .entry-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--navy);
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
+  .entry-company { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; }
+  .entry-title { font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 24px; line-height: 1.2; }
 
   .entry-framing {
-    font-size: 14px;
-    color: var(--text-light);
-    text-align: left;
-    background: var(--bg);
-    border: 1px solid var(--slate-border);
-    border-radius: 6px;
-    padding: 16px;
-    margin-bottom: 28px;
-    line-height: 1.65;
+    font-size: 14px; color: var(--text-light); text-align: left; background: var(--bg);
+    border: 1px solid var(--slate-border); border-radius: 6px; padding: 16px; margin-bottom: 28px; line-height: 1.65;
   }
 
   .form-group { text-align: left; margin-bottom: 24px; }
 
-  .form-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
 
   .form-input {
-    width: 100%;
-    padding: 11px 14px;
-    border: 2px solid var(--slate-border);
-    border-radius: 6px;
-    font-size: 15px;
-    font-family: inherit;
-    color: var(--text);
-    background: var(--white);
-    transition: border-color 0.2s;
-    outline: none;
+    width: 100%; padding: 11px 14px; border: 2px solid var(--slate-border);
+    border-radius: 6px; font-size: 15px; font-family: inherit; color: var(--text);
+    background: var(--white); transition: border-color 0.2s; outline: none;
   }
-
   .form-input:focus { border-color: var(--navy); }
 
-  /* =====================================================
-     BUTTONS
-  ===================================================== */
   .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 11px 24px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    transition: all 0.15s;
-    text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 24px; border-radius: 6px; font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; border: none; transition: all 0.15s; text-decoration: none;
   }
-
-  .btn-primary {
-    background: var(--navy);
-    color: var(--white);
-  }
-
+  .btn-primary { background: var(--navy); color: var(--white); }
   .btn-primary:hover:not(:disabled) { background: var(--navy-light); }
   .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--navy);
-    border: 2px solid var(--navy);
-  }
-
-  .btn-outline:hover { background: var(--navy); color: var(--white); }
-
   .btn-full { width: 100%; }
-
   .btn-sm { padding: 7px 16px; font-size: 13px; }
 
-  /* =====================================================
-     MODULE INTRO SCREENS
-  ===================================================== */
-.module-intro-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--slate-border);
-    padding: 40px;
-    max-width: 600px;
-    margin: 0 auto;
+  .module-intro-card {
+    background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-md);
+    border: 1px solid var(--slate-border); padding: 40px; max-width: 600px; margin: 48px auto 0;
   }
 
-  .module-intro-card .module-num {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 8px;
-  }
-
+  .module-intro-card .module-num { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-bottom: 8px; }
   .module-intro-card h1 { font-size: 24px; margin-bottom: 16px; }
-
   .module-intro-card p { font-size: 14px; color: var(--text-light); }
 
-  .module-stats {
-    display: flex;
-    gap: 16px;
-    margin: 20px 0;
-  }
+  .module-stats { display: flex; gap: 16px; margin: 20px 0; }
 
-  .stat-chip {
-    background: var(--bg);
-    border: 1px solid var(--slate-border);
-    border-radius: 6px;
-    padding: 8px 14px;
-    font-size: 13px;
-    color: var(--text-light);
-  }
-
+  .stat-chip { background: var(--bg); border: 1px solid var(--slate-border); border-radius: 6px; padding: 8px 14px; font-size: 13px; color: var(--text-light); }
   .stat-chip strong { color: var(--text); display: block; font-size: 18px; }
 
-  /* =====================================================
-     SCENARIOS
-  ===================================================== */
-  .scenario-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
+  .scenario-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 
   .scenario-badge {
-    background: var(--navy);
-    color: var(--white);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 4px;
-    white-space: nowrap;
+    background: var(--navy); color: var(--white); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; white-space: nowrap;
   }
 
   .scenario-title { font-size: 18px; font-weight: 700; color: var(--text); }
 
-  .framing-text {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.7;
-    margin-bottom: 20px;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  .framing-text { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 20px; user-select: none; -webkit-user-select: none; }
 
-  /* Exhibit styles */
-  .exhibit {
-    border: 1px solid var(--slate-border);
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 24px;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  .exhibit { border: 1px solid var(--slate-border); border-radius: 6px; overflow: hidden; margin-bottom: 24px; user-select: none; -webkit-user-select: none; }
 
-  .exhibit-header {
-    background: var(--navy);
-    color: var(--white);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 8px 16px;
-  }
+  .exhibit-header { background: var(--navy); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px; }
 
-  .exhibit table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  .exhibit table { width: 100%; border-collapse: collapse; }
 
-  .exhibit th {
-    background: var(--bg);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--slate);
-    text-align: left;
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--slate-border);
-  }
+  .exhibit th { background: var(--bg); font-size: 12px; font-weight: 600; color: var(--slate); text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--slate-border); }
 
-  .exhibit td {
-    padding: 9px 14px;
-    font-size: 13px;
-    color: var(--text);
-    border-bottom: 1px solid var(--slate-border);
-  }
-
+  .exhibit td { padding: 9px 14px; font-size: 13px; color: var(--text); border-bottom: 1px solid var(--slate-border); }
   .exhibit tr:last-child td { border-bottom: none; }
   .exhibit tr:nth-child(even) td { background: #fafbfc; }
 
-  .exhibit-note {
-    padding: 8px 14px;
-    font-size: 12px;
-    color: var(--slate);
-    background: var(--bg);
-    border-top: 1px solid var(--slate-border);
-    font-style: italic;
-  }
+  .exhibit-note { padding: 8px 14px; font-size: 12px; color: var(--slate); background: var(--bg); border-top: 1px solid var(--slate-border); font-style: italic; }
 
-  .exhibit-callout {
-    padding: 16px 20px;
-  }
+  .exhibit-callout { padding: 16px 20px; }
 
-  .exhibit-callout-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--slate-border);
-    font-size: 13px;
-  }
-
+  .exhibit-callout-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--slate-border); font-size: 13px; }
   .exhibit-callout-row:last-child { border-bottom: none; }
   .exhibit-callout-row .key { color: var(--text-light); }
   .exhibit-callout-row .val { font-weight: 600; color: var(--text); }
 
-  /* MC Options */
-  .question-stem {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 14px;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  .question-stem { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; user-select: none; -webkit-user-select: none; }
 
   .mc-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 
   .mc-option {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
-    border: 2px solid var(--slate-border);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-    -webkit-user-select: none;
+    display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px;
+    border: 2px solid var(--slate-border); border-radius: 6px; cursor: pointer;
+    transition: all 0.15s; user-select: none; -webkit-user-select: none;
   }
-
   .mc-option:hover:not(.locked) { border-color: var(--navy); background: #f0f4ff; }
-
   .mc-option.selected { border-color: var(--navy); background: #eef2ff; }
   .mc-option.selected .mc-letter { background: var(--navy); color: var(--white); }
-
   .mc-option.locked { cursor: default; }
-
   .mc-option.locked:not(.selected) { opacity: 0.55; }
 
   .mc-letter {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--slate-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--slate);
-    transition: all 0.15s;
+    width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--slate-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--slate); transition: all 0.15s;
   }
 
   .mc-option-text { font-size: 14px; color: var(--text); line-height: 1.5; padding-top: 2px; }
 
-  /* Follow-up */
-  .followup-section {
-    display: none;
-    animation: fadeSlideIn 0.3s ease;
-  }
-
+  .followup-section { display: none; animation: fadeSlideIn 0.3s ease; }
   .followup-section.visible { display: block; }
 
-  @keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   .followup-prompt {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    background: var(--bg);
-    border-left: 3px solid var(--navy);
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    border-radius: 0 6px 6px 0;
-    user-select: none;
-    -webkit-user-select: none;
+    font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg);
+    border-left: 3px solid var(--navy); padding: 12px 16px; margin-bottom: 12px;
+    border-radius: 0 6px 6px 0; user-select: none; -webkit-user-select: none;
   }
 
   .textarea-wrap { position: relative; }
 
   .form-textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 2px solid var(--slate-border);
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: inherit;
-    color: var(--text);
-    background: var(--white);
-    resize: vertical;
-    min-height: 110px;
-    line-height: 1.6;
-    transition: border-color 0.2s;
-    outline: none;
+    width: 100%; padding: 12px 14px; border: 2px solid var(--slate-border);
+    border-radius: 6px; font-size: 14px; font-family: inherit; color: var(--text);
+    background: var(--white); resize: vertical; min-height: 110px; line-height: 1.6;
+    transition: border-color 0.2s; outline: none;
   }
-
   .form-textarea:focus { border-color: var(--navy); }
 
-  .word-counter {
-    font-size: 12px;
-    color: var(--slate-light);
-    text-align: right;
-    margin-top: 5px;
-    font-variant-numeric: tabular-nums;
-  }
-
+  .word-counter { font-size: 12px; color: var(--slate-light); text-align: right; margin-top: 5px; font-variant-numeric: tabular-nums; }
   .word-counter.amber { color: var(--amber); }
   .word-counter.red { color: var(--red); font-weight: 600; }
 
-  .scenario-nav {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
+  .scenario-nav { display: flex; justify-content: flex-end; margin-top: 20px; }
 
-  /* =====================================================
-     MODULE 3 — PERSONALITY PAIRS
-  ===================================================== */
   .pairs-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 100px; }
 
   .pair-item { display: flex; gap: 0; border: 2px solid var(--slate-border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.15s; }
   .pair-item.answered { border-color: var(--navy); }
 
-  .pair-num {
-    width: 36px;
-    min-width: 36px;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--slate-light);
-    border-right: 1px solid var(--slate-border);
-  }
+  .pair-num { width: 36px; min-width: 36px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--slate-light); border-right: 1px solid var(--slate-border); }
 
   .pair-sides { display: flex; flex: 1; }
 
-  .pair-side {
-    flex: 1;
-    padding: 14px 16px;
-    cursor: pointer;
-    transition: all 0.15s;
-    position: relative;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
+  .pair-side { flex: 1; padding: 14px 16px; cursor: pointer; transition: all 0.15s; position: relative; user-select: none; -webkit-user-select: none; }
   .pair-side:first-child { border-right: 1px solid var(--slate-border); }
-
   .pair-side:hover { background: #f0f4ff; }
-
   .pair-side.selected { background: #eef2ff; }
 
-  .pair-side-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--slate-light);
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
+  .pair-side-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate-light); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
   .pair-side.selected .pair-side-label { color: var(--navy); }
 
-  .pair-check {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--navy);
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .pair-check { width: 16px; height: 16px; border-radius: 50%; background: var(--navy); display: none; align-items: center; justify-content: center; }
   .pair-side.selected .pair-check { display: flex; }
-
-  .pair-check::after {
-    content: '';
-    width: 6px;
-    height: 4px;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
-    transform: rotate(-45deg) translateY(-1px);
-  }
+  .pair-check::after { content: ''; width: 6px; height: 4px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); }
 
   .pair-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
   .pair-side.selected .pair-text { color: var(--text); }
 
-  /* M3 sticky footer */
-  #m3-footer {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--white);
-    border-top: 2px solid var(--slate-border);
-    z-index: 50;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
-  }
-
+  #m3-footer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 2px solid var(--slate-border); z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.08); }
   #m3-footer.hidden { display: none; }
 
-  .m3-footer-inner {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
+  .m3-footer-inner { max-width: 760px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .m3-progress-text { font-size: 14px; color: var(--text-light); }
   #m3-hint { font-size: 13px; color: var(--slate-light); }
 
-  /* =====================================================
-     REPORT SCREEN
-  ===================================================== */
-  #screen-report { background: var(--bg); }
-
-  .report-header {
-    background: var(--navy);
-    color: var(--white);
-    padding: 40px 24px 32px;
-    text-align: center;
-  }
-
-  .report-header-company {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.7;
-    margin-bottom: 8px;
-  }
-
-  .report-header h1 {
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .report-header-meta {
-    font-size: 13px;
-    opacity: 0.75;
-    margin-bottom: 20px;
-  }
-
-  .report-header-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .report-header-actions .btn {
-    background: rgba(255,255,255,0.15);
-    color: var(--white);
-    border: 1px solid rgba(255,255,255,0.3);
-    font-size: 13px;
-  }
-
-  .report-header-actions .btn:hover { background: rgba(255,255,255,0.25); }
-
-  .report-content { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
-
-  .report-section {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--slate-border);
-    padding: 28px;
-    margin-bottom: 20px;
-    page-break-inside: avoid;
-  }
-
-  .report-section-title {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--slate-border);
-  }
-
-  .exec-summary-text { font-size: 15px; color: var(--text); line-height: 1.75; }
-
-  /* Score bars */
-  .dimension-row { margin-bottom: 16px; }
-  .dimension-row:last-child { margin-bottom: 0; }
-
-  .dimension-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
-
-  .dimension-name { font-size: 14px; font-weight: 600; color: var(--text); }
-
-  .dimension-score {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-light);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .score-bar-bg {
-    height: 8px;
-    background: var(--slate-border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 5px;
-  }
-
-  .score-bar-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 0.6s ease;
-  }
-
-  .dimension-rationale { font-size: 13px; color: var(--text-light); }
-
-  /* Decision log */
-  .decision-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--slate-border); }
-  .decision-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-  .decision-scenario-label { font-size: 12px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .decision-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
-
-  .selected-option-callout {
-    background: #f0f4ff;
-    border-left: 3px solid var(--navy);
-    padding: 10px 14px;
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: var(--text);
-  }
-
-  .selected-option-callout .option-label { font-weight: 700; color: var(--navy); margin-right: 6px; }
-
-  .followup-q {
-    font-size: 13px;
-    font-style: italic;
-    color: var(--text-light);
-    margin-bottom: 6px;
-    padding: 8px 12px;
-    background: var(--bg);
-    border-radius: 4px;
-  }
-
-  .followup-response { font-size: 14px; color: var(--text); line-height: 1.65; }
-
-  .timed-out-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #fef3c7;
-    color: #92400e;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 1px solid #fde68a;
-  }
-
-  /* Personality profile */
-  .cluster-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--slate-border); }
-  .cluster-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-  .cluster-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-  .cluster-name { font-size: 15px; font-weight: 600; color: var(--text); }
-  .cluster-badge {
-    background: var(--bg);
-    border: 1px solid var(--slate-border);
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--slate);
-    padding: 2px 8px;
-  }
-
-  .cluster-text { font-size: 14px; color: var(--text-light); line-height: 1.65; }
-
-  /* Red flags */
-  .red-flag-item {
-    display: flex;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--slate-border);
-  }
-
-  .red-flag-item:last-child { border-bottom: none; }
-
-  .red-flag-icon {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    background: #fee2e2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #dc2626;
-  }
-
-  .red-flag-label { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-  .red-flag-detail { font-size: 13px; color: var(--text-light); line-height: 1.55; }
-
-  .no-flags {
-    font-size: 14px;
-    color: var(--green);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 0;
-  }
-
-  /* Interview probes */
-  .probe-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--slate-border);
-    counter-increment: probes;
-  }
-
-  .probe-item:last-child { border-bottom: none; }
-
-  .probe-list { counter-reset: probes; }
-
-  .probe-num { font-size: 11px; font-weight: 700; color: var(--slate-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .probe-text { font-size: 14px; color: var(--text); line-height: 1.6; }
-
-  /* Strategic responses */
-  .strategic-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--slate-border); }
-  .strategic-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .strategic-label { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .strategic-prompt { font-size: 13px; font-style: italic; color: var(--text-light); margin-bottom: 10px; line-height: 1.6; }
-  .strategic-response { font-size: 14px; color: var(--text); line-height: 1.7; }
-
-  /* =====================================================
-     ADMIN SCREEN
-  ===================================================== */
   .admin-wrap { max-width: 600px; margin: 80px auto; padding: 0 20px; }
 
-  .admin-link-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border: 1px solid var(--slate-border);
-    border-radius: 6px;
-    margin-bottom: 10px;
-    gap: 16px;
-    background: var(--bg);
-  }
-
+  .admin-link-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1px solid var(--slate-border); border-radius: 6px; margin-bottom: 10px; gap: 16px; background: var(--bg); }
   .admin-link-url { font-size: 13px; color: var(--text-light); word-break: break-all; flex: 1; font-family: monospace; }
 
-  /* =====================================================
-     UTILITY
-  ===================================================== */
   .hidden { display: none !important; }
-  .mt-20 { margin-top: 20px; }
-  .mt-8 { margin-top: 8px; }
 
-  .divider {
-    height: 1px;
-    background: var(--slate-border);
-    margin: 20px 0;
-  }
-
-  /* =====================================================
-     PRINT
-  ===================================================== */
   @media print {
-    #app-header, #m3-footer, .report-header-actions, .no-print { display: none !important; }
+    #app-header, #m3-footer, .no-print { display: none !important; }
     body { background: white; font-size: 13px; }
-    .report-header { background: var(--navy) !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-    .report-section { page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
-    .score-bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-    #main { padding-top: 0 !important; height: auto !important; overflow-y: visible !important; }
+    #main { padding-top: 0 !important; }
   }
 
-  /* Min-word warning */
-  .min-word-warning {
-    font-size: 12px;
-    color: var(--amber);
-    margin-top: 6px;
-    min-height: 18px;
-  }
+  .min-word-warning { font-size: 12px; color: var(--amber); margin-top: 6px; min-height: 18px; }
 </style>
 </head>
 <body>
 
-<!-- =====================================================
-     FIXED HEADER
-===================================================== -->
 <div id="app-header" class="hidden">
   <div class="header-inner">
     <div class="header-brand">AFCO Industries — CFO Assessment</div>
@@ -959,9 +305,6 @@
   <div id="progress-bar"><div id="progress-fill"></div></div>
 </div>
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
 <div id="main">
 
   <!-- ENTRY SCREEN -->
@@ -983,11 +326,10 @@
   <!-- MODULE 1 -->
   <div id="screen-module1" class="screen">
     <div class="content-wrap">
-      <!-- Module 1 Intro -->
       <div id="m1-intro" class="module-intro-card">
         <div class="module-num">Module 1 of 3</div>
         <h1>Financial Scenarios</h1>
-        <p>You will be presented with four real-world financial scenarios. The first three include a multiple-choice decision followed by a written follow-up. The fourth is an open-ended P&amp;L analysis — no multiple choice, longer response expected.</p>
+        <p>You will be presented with four real-world financial scenarios. The first three include a multiple-choice decision followed by a written follow-up. The fourth is an open-ended P&amp;L analysis.</p>
         <div class="module-stats">
           <div class="stat-chip"><strong>~28</strong> minutes</div>
           <div class="stat-chip"><strong>4</strong> scenarios</div>
@@ -995,7 +337,6 @@
         <button class="btn btn-primary" id="begin-m1-btn">Begin Module 1</button>
       </div>
 
-      <!-- Scenarios container -->
       <div id="m1-scenarios" class="hidden">
         <!-- Scenario 1 -->
         <div id="scenario-1" class="card hidden">
@@ -1009,14 +350,7 @@
           <div class="exhibit" oncontextmenu="return false">
             <div class="exhibit-header">Exhibit — Product Line Margin Summary</div>
             <table>
-              <thead>
-                <tr>
-                  <th>Product Line</th>
-                  <th>GM% Last Quarter</th>
-                  <th>GM% This Quarter</th>
-                  <th>Change</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Product Line</th><th>GM% Last Quarter</th><th>GM% This Quarter</th><th>Change</th></tr></thead>
               <tbody>
                 <tr><td>Aluminum Rail</td><td>34.2%</td><td>30.1%</td><td style="color:#dc2626;font-weight:600">−410 bps</td></tr>
                 <tr><td>Vinyl</td><td>28.7%</td><td>28.6%</td><td style="color:#64748b">−10 bps</td></tr>
@@ -1027,34 +361,18 @@
           </div>
           <div class="question-stem" oncontextmenu="return false">It's mid-quarter. You're looking at this data for the first time. What's your first move?</div>
           <div class="mc-options" id="s1-options">
-            <div class="mc-option" data-scenario="1" data-choice="A">
-              <div class="mc-letter">A</div>
-              <div class="mc-option-text">Call the plant managers to understand volume and mix before drawing conclusions</div>
-            </div>
-            <div class="mc-option" data-scenario="1" data-choice="B">
-              <div class="mc-letter">B</div>
-              <div class="mc-option-text">Immediately model a price adjustment and bring a recommendation to the CEO</div>
-            </div>
-            <div class="mc-option" data-scenario="1" data-choice="C">
-              <div class="mc-letter">C</div>
-              <div class="mc-option-text">Pull the full cost breakdown by SKU to isolate whether it's material cost, yield, or mix</div>
-            </div>
-            <div class="mc-option" data-scenario="1" data-choice="D">
-              <div class="mc-letter">D</div>
-              <div class="mc-option-text">Flag it to ownership and ask for guidance before acting</div>
-            </div>
+            <div class="mc-option" data-scenario="1" data-choice="A"><div class="mc-letter">A</div><div class="mc-option-text">Call the plant managers to understand volume and mix before drawing conclusions</div></div>
+            <div class="mc-option" data-scenario="1" data-choice="B"><div class="mc-letter">B</div><div class="mc-option-text">Immediately model a price adjustment and bring a recommendation to the CEO</div></div>
+            <div class="mc-option" data-scenario="1" data-choice="C"><div class="mc-letter">C</div><div class="mc-option-text">Pull the full cost breakdown by SKU to isolate whether it's material cost, yield, or mix</div></div>
+            <div class="mc-option" data-scenario="1" data-choice="D"><div class="mc-letter">D</div><div class="mc-option-text">Flag it to ownership and ask for guidance before acting</div></div>
           </div>
           <div class="followup-section" id="s1-followup">
             <div class="followup-prompt" id="s1-followup-prompt" oncontextmenu="return false"></div>
-            <div class="textarea-wrap">
-              <textarea class="form-textarea" id="s1-textarea" placeholder="Your response..."></textarea>
-            </div>
+            <div class="textarea-wrap"><textarea class="form-textarea" id="s1-textarea" placeholder="Your response..."></textarea></div>
             <div class="word-counter" id="s1-counter">0 / 150 words</div>
             <div class="min-word-warning" id="s1-min-warning"></div>
           </div>
-          <div class="scenario-nav">
-            <button class="btn btn-primary" id="s1-next-btn" disabled>Next Scenario</button>
-          </div>
+          <div class="scenario-nav"><button class="btn btn-primary" id="s1-next-btn" disabled>Next Scenario</button></div>
         </div>
 
         <!-- Scenario 2 -->
@@ -1078,34 +396,18 @@
           </div>
           <div class="question-stem" oncontextmenu="return false">The CEO asks for your read. What's your position?</div>
           <div class="mc-options" id="s2-options">
-            <div class="mc-option" data-scenario="2" data-choice="A">
-              <div class="mc-letter">A</div>
-              <div class="mc-option-text">Support it — 81% utilization and a sub-3 year payback justify the investment</div>
-            </div>
-            <div class="mc-option" data-scenario="2" data-choice="B">
-              <div class="mc-letter">B</div>
-              <div class="mc-option-text">Pump the brakes — you want to build your own model before taking a position</div>
-            </div>
-            <div class="mc-option" data-scenario="2" data-choice="C">
-              <div class="mc-letter">C</div>
-              <div class="mc-option-text">Conditionally support it — but only if you can negotiate vendor financing to preserve cash</div>
-            </div>
-            <div class="mc-option" data-scenario="2" data-choice="D">
-              <div class="mc-letter">D</div>
-              <div class="mc-option-text">Push back — 2.1x leverage is too tight to absorb a $2.2M outlay right now</div>
-            </div>
+            <div class="mc-option" data-scenario="2" data-choice="A"><div class="mc-letter">A</div><div class="mc-option-text">Support it — 81% utilization and a sub-3 year payback justify the investment</div></div>
+            <div class="mc-option" data-scenario="2" data-choice="B"><div class="mc-letter">B</div><div class="mc-option-text">Pump the brakes — you want to build your own model before taking a position</div></div>
+            <div class="mc-option" data-scenario="2" data-choice="C"><div class="mc-letter">C</div><div class="mc-option-text">Conditionally support it — but only if you can negotiate vendor financing to preserve cash</div></div>
+            <div class="mc-option" data-scenario="2" data-choice="D"><div class="mc-letter">D</div><div class="mc-option-text">Push back — 2.1x leverage is too tight to absorb a $2.2M outlay right now</div></div>
           </div>
           <div class="followup-section" id="s2-followup">
             <div class="followup-prompt" id="s2-followup-prompt" oncontextmenu="return false"></div>
-            <div class="textarea-wrap">
-              <textarea class="form-textarea" id="s2-textarea" placeholder="Your response..."></textarea>
-            </div>
+            <div class="textarea-wrap"><textarea class="form-textarea" id="s2-textarea" placeholder="Your response..."></textarea></div>
             <div class="word-counter" id="s2-counter">0 / 150 words</div>
             <div class="min-word-warning" id="s2-min-warning"></div>
           </div>
-          <div class="scenario-nav">
-            <button class="btn btn-primary" id="s2-next-btn" disabled>Next Scenario</button>
-          </div>
+          <div class="scenario-nav"><button class="btn btn-primary" id="s2-next-btn" disabled>Next Scenario</button></div>
         </div>
 
         <!-- Scenario 3 -->
@@ -1120,9 +422,7 @@
           <div class="exhibit" oncontextmenu="return false">
             <div class="exhibit-header">Exhibit — AR Aging Snapshot</div>
             <table>
-              <thead>
-                <tr><th>Metric</th><th>90 Days Ago</th><th>Today</th></tr>
-              </thead>
+              <thead><tr><th>Metric</th><th>90 Days Ago</th><th>Today</th></tr></thead>
               <tbody>
                 <tr><td>DSO</td><td>39 days</td><td style="color:#dc2626;font-weight:600">67 days</td></tr>
                 <tr><td>Overdue concentration</td><td>—</td><td>Top 3 customers = 80%</td></tr>
@@ -1132,37 +432,21 @@
           </div>
           <div class="question-stem" oncontextmenu="return false">You've just pulled this aging report. What's your immediate priority?</div>
           <div class="mc-options" id="s3-options">
-            <div class="mc-option" data-scenario="3" data-choice="A">
-              <div class="mc-letter">A</div>
-              <div class="mc-option-text">Get on the phone personally with the three customers — relationships matter more than process here</div>
-            </div>
-            <div class="mc-option" data-scenario="3" data-choice="B">
-              <div class="mc-letter">B</div>
-              <div class="mc-option-text">Direct the AR team to send formal demand letters and put orders on credit hold</div>
-            </div>
-            <div class="mc-option" data-scenario="3" data-choice="C">
-              <div class="mc-letter">C</div>
-              <div class="mc-option-text">Meet with the CEO and commercial team first — this is a sales relationship issue as much as a finance issue</div>
-            </div>
-            <div class="mc-option" data-scenario="3" data-choice="D">
-              <div class="mc-letter">D</div>
-              <div class="mc-option-text">Build a 13-week cash flow model immediately to understand how much runway you actually have</div>
-            </div>
+            <div class="mc-option" data-scenario="3" data-choice="A"><div class="mc-letter">A</div><div class="mc-option-text">Get on the phone personally with the three customers — relationships matter more than process here</div></div>
+            <div class="mc-option" data-scenario="3" data-choice="B"><div class="mc-letter">B</div><div class="mc-option-text">Direct the AR team to send formal demand letters and put orders on credit hold</div></div>
+            <div class="mc-option" data-scenario="3" data-choice="C"><div class="mc-letter">C</div><div class="mc-option-text">Meet with the CEO and commercial team first — this is a sales relationship issue as much as a finance issue</div></div>
+            <div class="mc-option" data-scenario="3" data-choice="D"><div class="mc-letter">D</div><div class="mc-option-text">Build a 13-week cash flow model immediately to understand how much runway you actually have</div></div>
           </div>
           <div class="followup-section" id="s3-followup">
             <div class="followup-prompt" id="s3-followup-prompt" oncontextmenu="return false"></div>
-            <div class="textarea-wrap">
-              <textarea class="form-textarea" id="s3-textarea" placeholder="Your response..."></textarea>
-            </div>
+            <div class="textarea-wrap"><textarea class="form-textarea" id="s3-textarea" placeholder="Your response..."></textarea></div>
             <div class="word-counter" id="s3-counter">0 / 150 words</div>
             <div class="min-word-warning" id="s3-min-warning"></div>
           </div>
-          <div class="scenario-nav">
-            <button class="btn btn-primary" id="s3-next-btn" disabled>Next Scenario</button>
-          </div>
+          <div class="scenario-nav"><button class="btn btn-primary" id="s3-next-btn" disabled>Next Scenario</button></div>
         </div>
-</div>
-        <!-- Scenario 4 — P&L Review (Module 1) -->
+
+        <!-- Scenario 4 — P&L Review — INSIDE m1-scenarios -->
         <div id="m1s4-card" class="card hidden">
           <div class="scenario-header">
             <div class="scenario-badge">Scenario 4 of 4</div>
@@ -1174,9 +458,7 @@
           <div class="exhibit" oncontextmenu="return false">
             <div class="exhibit-header">AFCO INDUSTRIES — INCOME STATEMENT SUMMARY ($000s)</div>
             <table>
-              <thead>
-                <tr><th></th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr>
-              </thead>
+              <thead><tr><th></th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead>
               <tbody>
                 <tr><td>Revenue</td><td>$48,200</td><td>$54,100</td><td>$57,300</td></tr>
                 <tr><td>Cost of Goods Sold</td><td>$33,740</td><td>$39,493</td><td>$43,548</td></tr>
@@ -1193,29 +475,23 @@
             <div class="exhibit-note">Inventory turns: 8.2x (FY2022) → 6.1x (FY2023) → 4.4x (FY2024)</div>
           </div>
           <div class="question-stem" oncontextmenu="return false">You have 10 minutes before your first meeting with the CEO. What do you see in this data and what are your three most important questions for him?</div>
-          <div class="textarea-wrap">
-            <textarea class="form-textarea" id="m1s4-textarea" placeholder="Your response..." style="min-height:140px;"></textarea>
-          </div>
+          <div class="textarea-wrap"><textarea class="form-textarea" id="m1s4-textarea" placeholder="Your response..." style="min-height:140px;"></textarea></div>
           <div class="word-counter" id="m1s4-counter">0 / 300 words</div>
           <div class="min-word-warning" id="m1s4-min-warning"></div>
-          <div class="scenario-nav">
-            <button class="btn btn-primary" id="m1s4-next-btn" disabled>Submit Module 1</button>
-          </div>
+          <div class="scenario-nav"><button class="btn btn-primary" id="m1s4-next-btn" disabled>Submit Module 1</button></div>
         </div>
 
-        </div>
-      </div>
+      </div><!-- end m1-scenarios -->
     </div>
   </div>
 
   <!-- MODULE 2 -->
   <div id="screen-module2" class="screen">
     <div class="content-wrap">
-      <!-- Module 2 Intro -->
       <div id="m2-intro" class="module-intro-card">
         <div class="module-num">Module 2 of 3</div>
         <h1>Strategic Advisor</h1>
-        <p>You will be presented with two open-ended scenarios drawn from the CFO's strategic advisory role. There are no right answers — respond as you would if you were in the role. Write as much or as little as is useful, up to 150 words per response.</p>
+        <p>You will be presented with two open-ended scenarios drawn from the CFO's strategic advisory role. There are no right answers — respond as you would if you were in the role. Up to 150 words per response.</p>
         <div class="module-stats">
           <div class="stat-chip"><strong>~15</strong> minutes</div>
           <div class="stat-chip"><strong>2</strong> scenarios</div>
@@ -1223,9 +499,7 @@
         <button class="btn btn-primary" id="begin-m2-btn">Begin Module 2</button>
       </div>
 
-      <!-- M2 Scenarios -->
       <div id="m2-scenarios" class="hidden">
-        <!-- Scenario 4 -->
         <div id="scenario-4" class="card hidden">
           <div class="scenario-header">
             <div class="scenario-badge">Scenario 4 of 5</div>
@@ -1234,17 +508,12 @@
           <div class="framing-text" oncontextmenu="return false">
             The CEO wants to accelerate hiring — he's proposing adding 4 senior roles simultaneously (COO, VP Sales, VP Operations, HR Director) at an estimated $1.2M in annual comp before any revenue impact. AFCO is profitable but cash-constrained seasonally. You have real concerns about the pace and sequencing. How do you handle this? What do you say to him, and what do you say to ownership?
           </div>
-          <div class="textarea-wrap">
-            <textarea class="form-textarea" id="s4-textarea" placeholder="Your response..."></textarea>
-          </div>
+          <div class="textarea-wrap"><textarea class="form-textarea" id="s4-textarea" placeholder="Your response..."></textarea></div>
           <div class="word-counter" id="s4-counter">0 / 150 words</div>
           <div class="min-word-warning" id="s4-min-warning"></div>
-          <div class="scenario-nav" style="margin-top:14px">
-            <button class="btn btn-primary" id="s4-next-btn" disabled>Next Scenario</button>
-          </div>
+          <div class="scenario-nav" style="margin-top:14px"><button class="btn btn-primary" id="s4-next-btn" disabled>Next Scenario</button></div>
         </div>
 
-        <!-- Scenario 5 -->
         <div id="scenario-5" class="card hidden">
           <div class="scenario-header">
             <div class="scenario-badge">Scenario 5 of 5</div>
@@ -1253,14 +522,10 @@
           <div class="framing-text" oncontextmenu="return false">
             FAM has asked for a quarterly financial update. It's been a mixed quarter — revenue up 6% vs. plan, but EBITDA is $280K unfavorable due to a combination of input cost pressure and a one-time equipment repair. The CEO wants to lead with the revenue outperformance. You're preparing the package. How do you frame this quarter? What do you include, what do you emphasize, and where do you push back on the CEO's framing if at all?
           </div>
-          <div class="textarea-wrap">
-            <textarea class="form-textarea" id="s5-textarea" placeholder="Your response..."></textarea>
-          </div>
+          <div class="textarea-wrap"><textarea class="form-textarea" id="s5-textarea" placeholder="Your response..."></textarea></div>
           <div class="word-counter" id="s5-counter">0 / 150 words</div>
           <div class="min-word-warning" id="s5-min-warning"></div>
-          <div class="scenario-nav" style="margin-top:14px">
-            <button class="btn btn-primary" id="s5-next-btn" disabled>Submit Module 2</button>
-          </div>
+          <div class="scenario-nav" style="margin-top:14px"><button class="btn btn-primary" id="s5-next-btn" disabled>Submit Module 2</button></div>
         </div>
       </div>
     </div>
@@ -1269,11 +534,10 @@
   <!-- MODULE 3 -->
   <div id="screen-module3" class="screen">
     <div class="content-wrap">
-      <!-- Module 3 Intro -->
       <div id="m3-intro" class="module-intro-card">
         <div class="module-num">Module 3 of 3</div>
         <h1>Personality Calibration</h1>
-        <p>You will see 50 pairs of statements. For each pair, select the statement that more accurately describes you — not how you think a CFO should act, but how you actually tend to behave. There are no right or wrong answers. All 50 pairs must be answered to submit.</p>
+        <p>You will see 50 pairs of statements. For each pair, select the statement that more accurately describes you — not how you think a CFO should act, but how you actually tend to behave. All 50 pairs must be answered to submit.</p>
         <div class="module-stats">
           <div class="stat-chip"><strong>~15</strong> minutes</div>
           <div class="stat-chip"><strong>50</strong> pairs</div>
@@ -1281,7 +545,6 @@
         <button class="btn btn-primary" id="begin-m3-btn">Begin Module 3</button>
       </div>
 
-      <!-- M3 Pairs -->
       <div id="m3-pairs-container" class="hidden">
         <h2 style="margin-bottom:16px;font-size:17px;">Select the statement that better describes you for each pair.</h2>
         <div class="pairs-list" id="pairs-list"></div>
@@ -1289,7 +552,7 @@
     </div>
   </div>
 
-  <!-- THANK YOU SCREEN -->
+  <!-- THANK YOU -->
   <div id="screen-thankyou" class="screen">
     <div class="entry-card" style="text-align:center;">
       <div class="entry-company">AFCO Industries</div>
@@ -1298,7 +561,6 @@
     </div>
   </div>
 
-  <!-- REPORT (unused by candidate — kept for admin/debug only) -->
   <div id="screen-report" class="screen"></div>
 
   <!-- ADMIN -->
@@ -1307,7 +569,7 @@
       <div class="card">
         <div class="label-tag slate" style="margin-bottom:16px">Admin</div>
         <h2 style="margin-bottom:8px">Candidate Links</h2>
-        <p style="margin-bottom:24px">Share one link per finalist. Each link pre-tags the assessment report with that candidate identifier.</p>
+        <p style="margin-bottom:24px">Share one link per finalist.</p>
         <div id="admin-links"></div>
       </div>
     </div>
@@ -1315,7 +577,6 @@
 
 </div>
 
-<!-- M3 Sticky Footer -->
 <div id="m3-footer" class="hidden">
   <div class="m3-footer-inner">
     <div class="m3-progress-text">
@@ -1327,9 +588,6 @@
 </div>
 
 <script>
-/* =====================================================
-   CONSTANTS
-===================================================== */
 const FOLLOW_UPS = {
   '1': {
     A: "Your plant call confirms it's a mix issue — higher aluminum SKU volume, not a yield problem. Pricing is already under contract. What do you do now?",
@@ -1352,30 +610,9 @@ const FOLLOW_UPS = {
 };
 
 const MC_OPTION_TEXTS = {
-  '1': {
-    A: "Call the plant managers to understand volume and mix before drawing conclusions",
-    B: "Immediately model a price adjustment and bring a recommendation to the CEO",
-    C: "Pull the full cost breakdown by SKU to isolate whether it's material cost, yield, or mix",
-    D: "Flag it to ownership and ask for guidance before acting"
-  },
-  '2': {
-    A: "Support it — 81% utilization and a sub-3 year payback justify the investment",
-    B: "Pump the brakes — you want to build your own model before taking a position",
-    C: "Conditionally support it — but only if you can negotiate vendor financing to preserve cash",
-    D: "Push back — 2.1x leverage is too tight to absorb a $2.2M outlay right now"
-  },
-  '3': {
-    A: "Get on the phone personally with the three customers — relationships matter more than process here",
-    B: "Direct the AR team to send formal demand letters and put orders on credit hold",
-    C: "Meet with the CEO and commercial team first — this is a sales relationship issue as much as a finance issue",
-    D: "Build a 13-week cash flow model immediately to understand how much runway you actually have"
-  }
-};
-
-const MC_SCORES = {
-  1: { A: 8, B: 4, C: 10, D: 1 },
-  2: { A: 4, B: 10, C: 8, D: 1 },
-  3: { A: 8, B: 1, C: 6, D: 10 }
+  '1': { A: "Call the plant managers to understand volume and mix before drawing conclusions", B: "Immediately model a price adjustment and bring a recommendation to the CEO", C: "Pull the full cost breakdown by SKU to isolate whether it's material cost, yield, or mix", D: "Flag it to ownership and ask for guidance before acting" },
+  '2': { A: "Support it — 81% utilization and a sub-3 year payback justify the investment", B: "Pump the brakes — you want to build your own model before taking a position", C: "Conditionally support it — but only if you can negotiate vendor financing to preserve cash", D: "Push back — 2.1x leverage is too tight to absorb a $2.2M outlay right now" },
+  '3': { A: "Get on the phone personally with the three customers — relationships matter more than process here", B: "Direct the AR team to send formal demand letters and put orders on credit hold", C: "Meet with the CEO and commercial team first — this is a sales relationship issue as much as a finance issue", D: "Build a 13-week cash flow model immediately to understand how much runway you actually have" }
 };
 
 const PAIRS = [
@@ -1404,8 +641,6 @@ const PAIRS = [
   ["I've left money on the table to take a role with more upside", "I've always optimized for current compensation"],
   ["I think about the long game more than the quarterly result", "I'm wired to focus on what's in front of me"],
   ["I'd describe myself primarily as a builder", "I'd describe myself primarily as an operator"],
-
-  // Cluster F — Resilience & Failure Response (26–33)
   ["When I see a problem forming, I surface it before I have the full answer", "When I see a problem forming, I wait until I can bring a solution alongside it"],
   ["When my team misses, I take the hit in the room and work out accountability privately", "When my team misses, I'm transparent about who made which call — leadership deserves accuracy"],
   ["I've been publicly wrong about something significant and it didn't change how I operate", "I've been publicly wrong about something significant and it made me more careful about what I commit to"],
@@ -1414,8 +649,6 @@ const PAIRS = [
   ["My most formative professional lessons came from failures, not successes", "I've learned more from studying what good operators do than from analyzing my own failures"],
   ["I've told an owner 'I got this wrong' — plainly, without hedging or context padding", "When I've made a mistake, I make sure the context that contributed to it is on the table too"],
   ["After a setback, I'm usually back to full effectiveness within days", "After a setback, I take real time to process before I move on — I don't rush it"],
-
-  // Cluster G — Collaboration vs. Independence (34–41)
   ["When I have enough information, I make the call and inform people after — I don't wait for consensus", "I don't consider a decision made until the people who have to execute it are genuinely on board"],
   ["I have a clear sense of which outcomes I was personally responsible for", "I find it hard to separate my contributions from the team's — we succeed or fail together"],
   ["When I disagree with a group decision, I say so, push hard, then execute fully if I lose", "When I disagree with a group decision, I work within the process — raising it repeatedly damages the team"],
@@ -1424,8 +657,6 @@ const PAIRS = [
   ["When there's open conflict on a leadership team, I'm usually the one who names it directly", "When there's open conflict on a leadership team, I work to resolve it off to the side first"],
   ["I'm most effective when I own a problem end-to-end, even if it means going alone for stretches", "I'm most effective when I'm working hard problems alongside people I respect"],
   ["I give leadership the conclusion first — I'll share my reasoning if they ask", "I walk leadership through my reasoning — I want them to see how I got there, not just where I landed"],
-
-  // Cluster H — Integrity & Transparency (42–50)
   ["When I know something will upset ownership, I tell them as soon as I know — even before I can fix it", "When I know something will upset ownership, I wait until I understand the scope so I'm not raising noise"],
   ["I present data in the format that makes it hardest to misread, even if the number doesn't look good", "I frame data so leadership can read it in context — a number without framing can do more harm than good"],
   ["I've given advice the CEO didn't want to hear, multiple times, and I haven't second-guessed it", "I've learned when to push hard and when to hold — not every disagreement is worth the relationship cost"],
@@ -1440,34 +671,14 @@ const PAIRS = [
 const MIN_WORDS = 20;
 const FORMSPREE_URL = 'https://formspree.io/f/meepdwbn';
 
-/* =====================================================
-   STATE
-===================================================== */
 const state = {
-  candidateName: '',
-  candidateSlug: '',
-  startTime: null,
-  endTime: null,
-  timedOut: false,
-  secondsRemaining: 45 * 60,
-  totalSeconds: 45 * 60,
-  timerInterval: null,
-  module1: {
-    currentScenario: 0,
-    scenarios: [
-      { mcChoice: null, followUpText: '' },
-      { mcChoice: null, followUpText: '' },
-      { mcChoice: null, followUpText: '' }
-    ],
-    plResponse: ''
-  },
+  candidateName: '', candidateSlug: '', startTime: null, endTime: null,
+  timedOut: false, secondsRemaining: 45 * 60, totalSeconds: 45 * 60, timerInterval: null,
+  module1: { currentScenario: 0, scenarios: [{ mcChoice: null, followUpText: '' }, { mcChoice: null, followUpText: '' }, { mcChoice: null, followUpText: '' }], plResponse: '' },
   module2: { responses: ['', ''] },
   module3: { answers: Array(50).fill(null) }
 };
 
-/* =====================================================
-   TIMER
-===================================================== */
 function startTimer() {
   state.startTime = Date.now();
   state.timerInterval = setInterval(timerTick, 1000);
@@ -1477,16 +688,12 @@ function startTimer() {
 function timerTick() {
   state.secondsRemaining--;
   updateTimerDisplay();
-  if (state.secondsRemaining <= 0) {
-    clearInterval(state.timerInterval);
-    handleTimeExpiry();
-  }
+  if (state.secondsRemaining <= 0) { clearInterval(state.timerInterval); handleTimeExpiry(); }
 }
 
 function updateTimerDisplay() {
   const s = Math.max(0, state.secondsRemaining);
-  const m = Math.floor(s / 60);
-  const sec = s % 60;
+  const m = Math.floor(s / 60), sec = s % 60;
   const el = document.getElementById('timer-display');
   const fill = document.getElementById('progress-fill');
   el.textContent = String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
@@ -1497,72 +704,34 @@ function updateTimerDisplay() {
 }
 
 function handleTimeExpiry() {
-  state.timedOut = true;
-  state.endTime = Date.now();
-  saveCurrentTextFields();
-  runSubmissionFlow();
+  state.timedOut = true; state.endTime = Date.now();
+  saveCurrentTextFields(); runSubmissionFlow();
 }
 
 function saveCurrentTextFields() {
-  ['s1','s2','s3'].forEach((id, i) => {
-    const ta = document.getElementById(id + '-textarea');
-    if (ta) state.module1.scenarios[i].followUpText = ta.value;
-  });
-  const plTa = document.getElementById('m1s4-textarea');
-  if (plTa) state.module1.plResponse = plTa.value;
-  ['s4','s5'].forEach((id, i) => {
-    const ta = document.getElementById(id + '-textarea');
-    if (ta) state.module2.responses[i] = ta.value;
-  });
+  ['s1','s2','s3'].forEach((id, i) => { const ta = document.getElementById(id + '-textarea'); if (ta) state.module1.scenarios[i].followUpText = ta.value; });
+  const plTa = document.getElementById('m1s4-textarea'); if (plTa) state.module1.plResponse = plTa.value;
+  ['s4','s5'].forEach((id, i) => { const ta = document.getElementById(id + '-textarea'); if (ta) state.module2.responses[i] = ta.value; });
 }
 
-/* =====================================================
-   TIME HELPERS
-===================================================== */
-function getElapsedMs() {
-  return (state.endTime || Date.now()) - (state.startTime || Date.now());
-}
-
-function getElapsedMinutes() {
-  return Math.floor(getElapsedMs() / 60000);
-}
-
-function getElapsedFormatted() {
-  const ms = getElapsedMs();
-  const m = Math.floor(ms / 60000);
-  const s = Math.floor((ms % 60000) / 1000);
-  return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
-}
+function getElapsedMs() { return (state.endTime || Date.now()) - (state.startTime || Date.now()); }
+function getElapsedMinutes() { return Math.floor(getElapsedMs() / 60000); }
+function getElapsedFormatted() { const ms = getElapsedMs(), m = Math.floor(ms / 60000), s = Math.floor((ms % 60000) / 1000); return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
 
 function getTimeFlag() {
   const mins = getElapsedMinutes();
-  if (mins < 15) {
-    return `⚠ TIMING FLAG: Completed in ${mins} min — significantly faster than the 45-minute window. Responses may lack depth. Recommend probing carefully in interview.`;
-  } else if (mins < 25) {
-    return `⚠ TIMING NOTE: Completed in ${mins} min — faster than expected. Review response depth carefully.`;
-  }
+  if (mins < 15) return `⚠ TIMING FLAG: Completed in ${mins} min — significantly faster than the 45-minute window. Responses may lack depth.`;
+  if (mins < 25) return `⚠ TIMING NOTE: Completed in ${mins} min — faster than expected. Review response depth carefully.`;
   return null;
 }
 
-/* =====================================================
-   WORD COUNT HELPERS
-===================================================== */
-function countWords(text) {
-  const trimmed = text.trim();
-  if (!trimmed) return 0;
-  return trimmed.split(/\s+/).length;
-}
+function countWords(text) { const t = text.trim(); if (!t) return 0; return t.split(/\s+/).length; }
 
-function truncateToWords(text, maxWords) {
-  const words = text.trim().split(/\s+/);
-  if (words.length <= maxWords) return text;
-  return words.slice(0, maxWords).join(' ');
-}
+function truncateToWords(text, maxWords) { const words = text.trim().split(/\s+/); if (words.length <= maxWords) return text; return words.slice(0, maxWords).join(' '); }
 
 function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
   maxWords = maxWords || 150;
-  const ta = document.getElementById(textareaId);
-  const counter = document.getElementById(counterId);
+  const ta = document.getElementById(textareaId), counter = document.getElementById(counterId);
   if (!ta || !counter) return;
   ta.addEventListener('input', () => {
     const truncated = truncateToWords(ta.value, maxWords);
@@ -1575,42 +744,21 @@ function setupWordCounter(textareaId, counterId, onChangeCallback, maxWords) {
   });
 }
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function scrollToTop() {
-  document.activeElement?.blur();
-  window.scrollTo(0, 0);
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
-  requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  });
-}
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
-  scrollToTop();
+  window.scrollTo(0, 0);
 }
 
-/* =====================================================
-   ENTRY SCREEN
-===================================================== */
+function setModuleIndicator(text) { document.getElementById('module-indicator').textContent = text; }
+
 function initEntryScreen() {
   const nameInput = document.getElementById('candidate-name');
   const beginBtn = document.getElementById('begin-btn');
-
-  nameInput.addEventListener('input', () => {
-    beginBtn.disabled = nameInput.value.trim().length < 2;
-  });
-
+  nameInput.addEventListener('input', () => { beginBtn.disabled = nameInput.value.trim().length < 2; });
   beginBtn.addEventListener('click', () => {
     state.candidateName = nameInput.value.trim();
-    const params = new URLSearchParams(window.location.search);
-    state.candidateSlug = params.get('candidate') || '';
+    state.candidateSlug = new URLSearchParams(window.location.search).get('candidate') || '';
     document.getElementById('app-header').classList.remove('hidden');
     document.getElementById('main').classList.add('has-header');
     startTimer();
@@ -1618,28 +766,22 @@ function initEntryScreen() {
   });
 }
 
-/* =====================================================
-   MODULE INTROS
-===================================================== */
 function showModuleIntro(moduleNum) {
   if (moduleNum === 1) {
-    showScreen('module1');
-    setModuleIndicator('Module 1 of 3');
+    showScreen('module1'); setModuleIndicator('Module 1 of 3');
     document.getElementById('m1-intro').classList.remove('hidden');
     document.getElementById('m1-scenarios').classList.add('hidden');
   } else if (moduleNum === 2) {
-    showScreen('module2');
-    setModuleIndicator('Module 2 of 3');
+    showScreen('module2'); setModuleIndicator('Module 2 of 3');
     document.getElementById('m2-intro').classList.remove('hidden');
     document.getElementById('m2-scenarios').classList.add('hidden');
   } else if (moduleNum === 3) {
-    showScreen('module3');
-    setModuleIndicator('Module 3 of 3');
+    showScreen('module3'); setModuleIndicator('Module 3 of 3');
     document.getElementById('m3-intro').classList.remove('hidden');
     document.getElementById('m3-pairs-container').classList.add('hidden');
     document.getElementById('m3-footer').classList.add('hidden');
   }
-  scrollToTop();
+  window.scrollTo(0, 0);
 }
 
 document.getElementById('begin-m1-btn').addEventListener('click', () => {
@@ -1659,12 +801,9 @@ document.getElementById('begin-m3-btn').addEventListener('click', () => {
   buildPairs();
   document.getElementById('m3-pairs-container').classList.remove('hidden');
   document.getElementById('m3-footer').classList.remove('hidden');
-  scrollToTop();
+  window.scrollTo(0, 0);
 });
 
-/* =====================================================
-   MODULE 1 — SCENARIO LOGIC
-===================================================== */
 function showScenario(n) {
   state.module1.currentScenario = n;
   for (let i = 1; i <= 3; i++) document.getElementById('scenario-' + i).classList.add('hidden');
@@ -1676,189 +815,91 @@ function showScenario(n) {
     document.getElementById('scenario-' + n).classList.remove('hidden');
     setupWordCounter('s' + n + '-textarea', 's' + n + '-counter', (wc) => updateM1NextBtn(n, wc));
   }
-  scrollToTop();
+  window.scrollTo(0, 0);
 }
 
 function updateM1NextBtn(scenarioNum, wc) {
   const btnId = scenarioNum === 4 ? 'm1s4-next-btn' : 's' + scenarioNum + '-next-btn';
   const warnId = scenarioNum === 4 ? 'm1s4-min-warning' : 's' + scenarioNum + '-min-warning';
-  const nextBtn = document.getElementById(btnId);
-  const warning = document.getElementById(warnId);
+  const nextBtn = document.getElementById(btnId), warning = document.getElementById(warnId);
   const minW = scenarioNum === 4 ? 50 : MIN_WORDS;
-  if (scenarioNum !== 4) {
-    const sData = state.module1.scenarios[scenarioNum - 1];
-    if (!sData.mcChoice) { nextBtn.disabled = true; return; }
-  }
-  if (wc < minW) {
-    nextBtn.disabled = true;
-    if (warning) warning.textContent = 'Minimum ' + minW + ' words required.';
-  } else {
-    nextBtn.disabled = false;
-    if (warning) warning.textContent = '';
-  }
+  if (scenarioNum !== 4) { const sData = state.module1.scenarios[scenarioNum - 1]; if (!sData.mcChoice) { nextBtn.disabled = true; return; } }
+  if (wc < minW) { nextBtn.disabled = true; if (warning) warning.textContent = 'Minimum ' + minW + ' words required.'; }
+  else { nextBtn.disabled = false; if (warning) warning.textContent = ''; }
 }
 
-// MC option click handler (delegated)
 document.getElementById('m1-scenarios').addEventListener('click', (e) => {
   const option = e.target.closest('.mc-option');
   if (!option) return;
-  const scenarioNum = parseInt(option.dataset.scenario);
-  const choice = option.dataset.choice;
+  const scenarioNum = parseInt(option.dataset.scenario), choice = option.dataset.choice;
   const sData = state.module1.scenarios[scenarioNum - 1];
   if (sData.mcChoice !== null) return;
   sData.mcChoice = choice;
-
-  const allOptions = document.querySelectorAll('#s' + scenarioNum + '-options .mc-option');
-  allOptions.forEach(opt => {
+  document.querySelectorAll('#s' + scenarioNum + '-options .mc-option').forEach(opt => {
     opt.classList.add('locked');
     if (opt.dataset.choice === choice) opt.classList.add('selected');
   });
-
   const followupSection = document.getElementById('s' + scenarioNum + '-followup');
   const followupPrompt = document.getElementById('s' + scenarioNum + '-followup-prompt');
   followupPrompt.textContent = FOLLOW_UPS[String(scenarioNum)][choice];
   followupSection.classList.add('visible');
-
-  // Button stays disabled until 20 words; re-check current word count
   const ta = document.getElementById('s' + scenarioNum + '-textarea');
-  const wc = countWords(ta ? ta.value : '');
-  updateM1NextBtn(scenarioNum, wc);
+  updateM1NextBtn(scenarioNum, countWords(ta ? ta.value : ''));
 });
 
-document.getElementById('s1-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('s1-textarea');
-  if (countWords(ta.value) < MIN_WORDS) return;
-  state.module1.scenarios[0].followUpText = ta.value;
-  showScenario(2);
-});
+document.getElementById('s1-next-btn').addEventListener('click', () => { const ta = document.getElementById('s1-textarea'); if (countWords(ta.value) < MIN_WORDS) return; state.module1.scenarios[0].followUpText = ta.value; showScenario(2); });
+document.getElementById('s2-next-btn').addEventListener('click', () => { const ta = document.getElementById('s2-textarea'); if (countWords(ta.value) < MIN_WORDS) return; state.module1.scenarios[1].followUpText = ta.value; showScenario(3); });
+document.getElementById('s3-next-btn').addEventListener('click', () => { const ta = document.getElementById('s3-textarea'); if (countWords(ta.value) < MIN_WORDS) return; state.module1.scenarios[2].followUpText = ta.value; showScenario(4); });
+document.getElementById('m1s4-next-btn').addEventListener('click', () => { const ta = document.getElementById('m1s4-textarea'); if (countWords(ta.value) < 50) return; state.module1.plResponse = ta.value; showModuleIntro(2); });
 
-document.getElementById('s2-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('s2-textarea');
-  if (countWords(ta.value) < MIN_WORDS) return;
-  state.module1.scenarios[1].followUpText = ta.value;
-  showScenario(3);
-});
-
-document.getElementById('s3-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('s3-textarea');
-  if (countWords(ta.value) < MIN_WORDS) return;
-  state.module1.scenarios[2].followUpText = ta.value;
-  showScenario(4);
-});
-
-document.getElementById('m1s4-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('m1s4-textarea');
-  if (countWords(ta.value) < 50) return;
-  state.module1.plResponse = ta.value;
-  showModuleIntro(2);
-});
-
-/* =====================================================
-   MODULE 2 — LOGIC
-===================================================== */
 function showM2Scenario(n) {
-  for (let i = 4; i <= 5; i++) {
-    document.getElementById('scenario-' + i).classList.add('hidden');
-  }
+  for (let i = 4; i <= 5; i++) document.getElementById('scenario-' + i).classList.add('hidden');
   document.getElementById('scenario-' + n).classList.remove('hidden');
-  scrollToTop();
-
-  const id = 's' + n;
-  const nextBtn = document.getElementById(id + '-next-btn');
-  const warning = document.getElementById(id + '-min-warning');
-
-  const refresh = (wc) => {
-    if (wc < MIN_WORDS) {
-      nextBtn.disabled = true;
-      if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.';
-    } else {
-      nextBtn.disabled = false;
-      if (warning) warning.textContent = '';
-    }
-  };
-
+  window.scrollTo(0, 0);
+  const id = 's' + n, nextBtn = document.getElementById(id + '-next-btn'), warning = document.getElementById(id + '-min-warning');
+  const refresh = (wc) => { if (wc < MIN_WORDS) { nextBtn.disabled = true; if (warning) warning.textContent = 'Minimum ' + MIN_WORDS + ' words required.'; } else { nextBtn.disabled = false; if (warning) warning.textContent = ''; } };
   nextBtn.disabled = true;
   setupWordCounter(id + '-textarea', id + '-counter', refresh);
-
-  const ta = document.getElementById(id + '-textarea');
-  refresh(countWords(ta.value));
+  refresh(countWords(document.getElementById(id + '-textarea').value));
 }
 
-document.getElementById('s4-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('s4-textarea');
-  if (countWords(ta.value) < MIN_WORDS) return;
-  state.module2.responses[0] = ta.value;
-  showM2Scenario(5);
-});
+document.getElementById('s4-next-btn').addEventListener('click', () => { const ta = document.getElementById('s4-textarea'); if (countWords(ta.value) < MIN_WORDS) return; state.module2.responses[0] = ta.value; showM2Scenario(5); });
+document.getElementById('s5-next-btn').addEventListener('click', () => { const ta = document.getElementById('s5-textarea'); if (countWords(ta.value) < MIN_WORDS) return; state.module2.responses[1] = ta.value; showModuleIntro(3); });
 
-document.getElementById('s5-next-btn').addEventListener('click', () => {
-  const ta = document.getElementById('s5-textarea');
-  if (countWords(ta.value) < MIN_WORDS) return;
-  state.module2.responses[1] = ta.value;
-  showModuleIntro(3);
-});
-
-/* =====================================================
-   MODULE 3 — PAIRS
-===================================================== */
 function buildPairs() {
   const list = document.getElementById('pairs-list');
   list.innerHTML = '';
   PAIRS.forEach((pair, idx) => {
     const item = document.createElement('div');
-    item.className = 'pair-item';
-    item.id = 'pair-' + idx;
-    item.innerHTML = `
-      <div class="pair-num">${idx + 1}</div>
-      <div class="pair-sides">
-        <div class="pair-side" data-pair="${idx}" data-choice="A">
-          <div class="pair-side-label">A<div class="pair-check"></div></div>
-          <div class="pair-text">${pair[0]}</div>
-        </div>
-        <div class="pair-side" data-pair="${idx}" data-choice="B">
-          <div class="pair-side-label">B<div class="pair-check"></div></div>
-          <div class="pair-text">${pair[1]}</div>
-        </div>
-      </div>
-    `;
+    item.className = 'pair-item'; item.id = 'pair-' + idx;
+    item.innerHTML = `<div class="pair-num">${idx + 1}</div><div class="pair-sides"><div class="pair-side" data-pair="${idx}" data-choice="A"><div class="pair-side-label">A<div class="pair-check"></div></div><div class="pair-text">${pair[0]}</div></div><div class="pair-side" data-pair="${idx}" data-choice="B"><div class="pair-side-label">B<div class="pair-check"></div></div><div class="pair-text">${pair[1]}</div></div></div>`;
     list.appendChild(item);
   });
-
   list.addEventListener('click', (e) => {
-    const side = e.target.closest('.pair-side');
-    if (!side) return;
-    const pairIdx = parseInt(side.dataset.pair);
-    const choice = side.dataset.choice;
+    const side = e.target.closest('.pair-side'); if (!side) return;
+    const pairIdx = parseInt(side.dataset.pair), choice = side.dataset.choice;
     state.module3.answers[pairIdx] = choice;
     const pairEl = document.getElementById('pair-' + pairIdx);
     pairEl.classList.add('answered');
-    pairEl.querySelectorAll('.pair-side').forEach(s => {
-      s.classList.toggle('selected', s.dataset.choice === choice);
-    });
+    pairEl.querySelectorAll('.pair-side').forEach(s => s.classList.toggle('selected', s.dataset.choice === choice));
     updateM3Progress();
   });
-
   updateM3Progress();
 }
 
 function updateM3Progress() {
   const answered = state.module3.answers.filter(a => a !== null).length;
   document.getElementById('m3-answered-count').textContent = answered;
-  const btn = document.getElementById('m3-submit-btn');
-  btn.disabled = answered < 50;
+  document.getElementById('m3-submit-btn').disabled = answered < 50;
   document.getElementById('m3-hint').style.display = answered >= 50 ? 'none' : '';
 }
 
 document.getElementById('m3-submit-btn').addEventListener('click', () => {
-  state.endTime = Date.now();
-  clearInterval(state.timerInterval);
+  state.endTime = Date.now(); clearInterval(state.timerInterval);
   document.getElementById('m3-footer').classList.add('hidden');
   runSubmissionFlow();
 });
 
-/* =====================================================
-   CLUSTER SCORE HELPER
-===================================================== */
 function getClusterScores() {
   const ans = state.module3.answers;
   return {
@@ -1873,128 +914,67 @@ function getClusterScores() {
   };
 }
 
-/* =====================================================
-   BUILD PLAIN TEXT REPORT FOR FORMSPREE
-===================================================== */
 function buildPlainTextReport() {
   const name = state.candidateName;
   const submittedAt = new Date().toLocaleString('en-US', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
-  const elapsed = getElapsedFormatted();
-  const elapsedMins = getElapsedMinutes();
-  const timeFlag = getTimeFlag();
-  const s = state.module1.scenarios;
-  const cls = getClusterScores();
-  const ans = state.module3.answers;
-  const SEP = '='.repeat(56);
-  const lines = [];
-
-  lines.push(SEP);
-  lines.push('AFCO INDUSTRIES -- CFO CANDIDATE ASSESSMENT');
-  lines.push(SEP);
-  lines.push(`Candidate:         ${name}`);
-  lines.push(`Submitted:         ${submittedAt}`);
+  const elapsed = getElapsedFormatted(), elapsedMins = getElapsedMinutes(), timeFlag = getTimeFlag();
+  const s = state.module1.scenarios, cls = getClusterScores(), ans = state.module3.answers;
+  const SEP = '='.repeat(56), lines = [];
+  lines.push(SEP); lines.push('AFCO INDUSTRIES -- CFO CANDIDATE ASSESSMENT'); lines.push(SEP);
+  lines.push(`Candidate:         ${name}`); lines.push(`Submitted:         ${submittedAt}`);
   lines.push(`Completion time:   ${elapsed} (${elapsedMins} min)`);
   if (state.candidateSlug) lines.push(`Candidate ID:      ${state.candidateSlug}`);
   if (timeFlag) { lines.push(''); lines.push(timeFlag); }
-
-  lines.push('');
-  lines.push(SEP);
-  lines.push('MODULE 1 -- DECISION LOG');
-  lines.push(SEP);
+  lines.push(''); lines.push(SEP); lines.push('MODULE 1 -- DECISION LOG'); lines.push(SEP);
   [0,1,2].forEach(i => {
     const titles = ['Margin Erosion','CapEx Decision','Collections Crisis'];
-    const sc = s[i];
-    const ch = sc.mcChoice;
+    const sc = s[i], ch = sc.mcChoice;
     lines.push(`Scenario ${i+1}: ${titles[i]}`);
     if (!ch) { lines.push('Not completed -- timed out'); }
-    else {
-      lines.push(`Selected: ${ch} -- ${MC_OPTION_TEXTS[String(i+1)][ch]}`);
-      lines.push(`Follow-up: "${FOLLOW_UPS[String(i+1)][ch]}"`);
-      lines.push(`Response: ${sc.followUpText || '(No response)'}`);
-    }
+    else { lines.push(`Selected: ${ch} -- ${MC_OPTION_TEXTS[String(i+1)][ch]}`); lines.push(`Follow-up: "${FOLLOW_UPS[String(i+1)][ch]}"`); lines.push(`Response: ${sc.followUpText || '(No response)'}`); }
     lines.push('');
   });
-
-  lines.push('Scenario 4 (P&L Analysis):');
-  lines.push(state.module1.plResponse || '(Not completed)');
-  lines.push('');
-
-  lines.push(SEP);
-  lines.push('MODULE 2 -- STRATEGIC RESPONSES');
-  lines.push(SEP);
-  lines.push('Scenario 4 -- CEO Misalignment:');
-  lines.push(state.module2.responses[0] || '(Not completed)');
-  lines.push('');
-  lines.push('Scenario 5 -- Ownership Communication:');
-  lines.push(state.module2.responses[1] || '(Not completed)');
-  lines.push('');
-
-  lines.push(SEP);
-  lines.push('MODULE 3 -- PERSONALITY CALIBRATION');
-  lines.push(SEP);
+  lines.push('Scenario 4 (P&L Analysis):'); lines.push(state.module1.plResponse || '(Not completed)'); lines.push('');
+  lines.push(SEP); lines.push('MODULE 2 -- STRATEGIC RESPONSES'); lines.push(SEP);
+  lines.push('Scenario 4 -- CEO Misalignment:'); lines.push(state.module2.responses[0] || '(Not completed)'); lines.push('');
+  lines.push('Scenario 5 -- Ownership Communication:'); lines.push(state.module2.responses[1] || '(Not completed)'); lines.push('');
+  lines.push(SEP); lines.push('MODULE 3 -- PERSONALITY CALIBRATION'); lines.push(SEP);
   lines.push('--- Original Clusters (1-25) ---');
   lines.push(`Commitment & Risk (1-5):        ${cls.riskCount}/5 A`);
   lines.push(`Authority Relationship (6-10):  ${cls.deferenceCount}/5 B (deference)`);
   lines.push(`Diligence & Detail (11-15):     ${cls.diligenceCount}/5 A`);
   lines.push(`Communication Style (16-20):    ${cls.directnessCount}/5 A`);
   lines.push(`Ambition & Values (21-25):      ${cls.commercialCount}/5 A`);
-  lines.push('');
-  lines.push('--- New Clusters (26-50) ---');
+  lines.push(''); lines.push('--- New Clusters (26-50) ---');
   lines.push(`Resilience & Failure (26-33):   ${cls.resilienceCount}/8 A`);
   lines.push(`Collaboration vs. Indep (34-41):${cls.independenceCount}/8 A (independent)`);
   lines.push(`Integrity & Transparency (42-50):${cls.integrityCount}/9 A`);
-  lines.push('');
-  lines.push('Raw answers (1-50): ' + ans.map((a,i) => `${i+1}:${a||'?'}`).join(' '));
-  lines.push('');
-  lines.push(SEP);
-
+  lines.push(''); lines.push('Raw answers (1-50): ' + ans.map((a,i) => `${i+1}:${a||'?'}`).join(' '));
+  lines.push(''); lines.push(SEP);
   return lines.join('\n');
 }
 
-/* =====================================================
-   SUBMISSION FLOW
-===================================================== */
 function runSubmissionFlow() {
   state.endTime = state.endTime || Date.now();
   document.getElementById('app-header').classList.add('hidden');
   document.getElementById('main').classList.remove('has-header');
-
-  // Formspree — fire and forget
   const reportText = buildPlainTextReport();
   const elapsedMins = getElapsedMinutes();
-  const submittedAt = new Date().toLocaleString('en-US', {
-    year:'numeric', month:'long', day:'numeric',
-    hour:'2-digit', minute:'2-digit', timeZoneName:'short'
-  });
+  const submittedAt = new Date().toLocaleString('en-US', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
   fetch(FORMSPREE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      candidate: state.candidateName + (state.candidateSlug ? ' (' + state.candidateSlug + ')' : ''),
-      submitted_at: submittedAt,
-      completion_time: elapsedMins + ' minutes',
-      's4_pl_analysis': state.module1.plResponse || '(Not completed)',
-      report: reportText
-    })
+    body: JSON.stringify({ candidate: state.candidateName + (state.candidateSlug ? ' (' + state.candidateSlug + ')' : ''), submitted_at: submittedAt, completion_time: elapsedMins + ' minutes', 's4_pl_analysis': state.module1.plResponse || '(Not completed)', report: reportText })
   }).catch(() => {});
-
-  // Thank you screen
   const nameLine = document.getElementById('thankyou-name-line');
   if (nameLine) nameLine.textContent = 'Thank you, ' + state.candidateName + '.';
   showScreen('thankyou');
 }
 
-/* =====================================================
-   INIT
-===================================================== */
 document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('admin') === 'true') {
-    showScreen('admin');
-    initAdminPage();
-    return;
-  }
-initEntryScreen();
+  if (params.get('admin') === 'true') { showScreen('admin'); initAdminPage(); return; }
+  initEntryScreen();
   showScreen('entry');
 });
 
@@ -2005,19 +985,13 @@ function initAdminPage() {
     const url = baseUrl + '?candidate=' + slug;
     const item = document.createElement('div');
     item.className = 'admin-link-item';
-    item.innerHTML = `
-      <div class="admin-link-url">${url}</div>
-      <button class="btn btn-primary" style="font-size:12px;padding:6px 14px;" onclick="copyAdminLink(this,'${url}')">Copy</button>
-    `;
+    item.innerHTML = `<div class="admin-link-url">${url}</div><button class="btn btn-primary" style="font-size:12px;padding:6px 14px;" onclick="copyAdminLink(this,'${url}')">Copy</button>`;
     container.appendChild(item);
   });
 }
 
 window.copyAdminLink = function(btn, url) {
-  navigator.clipboard.writeText(url).then(() => {
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy', 2000);
-  });
+  navigator.clipboard.writeText(url).then(() => { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); });
 };
 </script>
 </body>
